@@ -1,16 +1,16 @@
 {
-  "name": "fithelper-front-shell",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/fithelper-front/shell/src",
+  "name": "fithelper-front-homepage-util",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/fithelper-front/homepage/util/src",
   "prefix": "fithelper",
-  "tags": ["scope:fithelper-front", "type:routes"],
+  "tags": ["scope:fithelper-front", "type:util"],
   "projectType": "library",
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "libs/fithelper-front/shell/jest.config.ts"
+        "jestConfig": "libs/fithelper-front/homepage/util/jest.config.ts"
       }
     },
     "lint": {
