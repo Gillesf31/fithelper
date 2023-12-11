@@ -1,5 +1,5 @@
 {
-  "name": "feature",
+  "name": "fithelper-front-homepage-feature",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/fithelper-front/homepage/feature/src",
   "prefix": "fithelper",
