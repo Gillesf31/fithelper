@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import {
   AuthChangeEvent,
+  AuthResponse,
   AuthSession,
+  AuthTokenResponse,
   createClient,
   Session,
   SupabaseClient,
 } from '@supabase/supabase-js';
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 @Injectable()
 export class AuthenticationService {
@@ -20,7 +22,7 @@ export class AuthenticationService {
     this.#supabase = createClient(supabaseUrl, supabaseKey);
   }
 
-  public get session() {
+  public get session(): AuthSession | null {
     this.#supabase.auth.getSession().then(({ data }) => {
       this.#session = data.session;
       return this.#session;
@@ -34,11 +36,14 @@ export class AuthenticationService {
     return this.#supabase.auth.onAuthStateChange(callback);
   }
 
-  public signUp(email: string, password: string) {
+  public signUp(email: string, password: string): Observable<AuthResponse> {
     return from(this.#supabase.auth.signUp({ email, password }));
   }
 
-  public signInWithPassword(email: string, password: string) {
+  public signInWithPassword(
+    email: string,
+    password: string
+  ): Observable<AuthTokenResponse> {
     return from(this.#supabase.auth.signInWithPassword({ email, password }));
   }
 
