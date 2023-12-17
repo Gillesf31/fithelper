@@ -14,4 +14,5 @@ module.exports = {
   daisyui: {
     themes: ['night', 'nord', 'synthwave', 'sunset'],
   },
+  safelist: ['alert-error', 'alert-warning', 'alert-success', 'alert-info'],
 };

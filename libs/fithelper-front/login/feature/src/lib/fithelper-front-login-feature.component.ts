@@ -2,9 +2,10 @@ import { Component, DestroyRef, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from '@fithelper/fithelper-front/authentication/data-access';
+import { AlertComponent } from '@fithelper/fithelper-front-shared-ui-components-alert-ui';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
-import { AlertComponent } from '@fithelper/fithelper-front-shared-ui-components-alert-ui';
+import { AuthOtpResponse } from '@supabase/supabase-js';
 
 @Component({
   selector: 'fithelper-front-login-feature',
@@ -26,15 +27,15 @@ export class FithelperFrontLoginFeatureComponent {
     this.#authService
       .signInWithMagicLink(email)
       .pipe(
-        takeUntilDestroyed(this.#destroyRef),
-        tap((value) => {
+        tap((value: AuthOtpResponse) => {
           if (!value.error) {
             this.isEmailSent = true;
           } else {
             this.isEmailSent = false;
             this.userError = value.error.message;
           }
-        })
+        }),
+        takeUntilDestroyed(this.#destroyRef)
       )
       .subscribe();
   }
