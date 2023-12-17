@@ -15,6 +15,18 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@fithelper/fithelper-front-homepage-register-feature": [
+        "libs/fithelper-front/homepage/register/feature/src/index.ts"
+      ],
+      "@fithelper/fithelper-front-login-feature": [
+        "libs/fithelper-front/login/feature/src/index.ts"
+      ],
+      "@fithelper/fithelper-front-shared-ui-components-alert-ui": [
+        "libs/shared/ui-components/alert/ui/src/index.ts"
+      ],
+      "@fithelper/fithelper-front/authentication/data-access": [
+        "libs/fithelper-front/authentication/data-access/src/index.ts"
+      ],
       "@fithelper/fithelper-front/homepage/feature": [
         "libs/fithelper-front/homepage/feature/src/index.ts"
       ],
