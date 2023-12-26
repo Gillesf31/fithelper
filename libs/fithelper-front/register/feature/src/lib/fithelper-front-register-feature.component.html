@@ -45,6 +45,7 @@
           </label>
           <input
             #password="ngModel"
+            [pattern]="pwdRegex"
             autocomplete="on"
             class="input input-bordered placeholder:opacity-25"
             name="password"
@@ -53,6 +54,37 @@
             required
             type="password"
           />
+          <div
+            *ngIf="password?.dirty && !password?.value?.match(pwdRegex)"
+            class="text-error text-sm"
+          >
+            <span class="mt-3 block text-neutral-content"
+              >Your password should contain</span
+            >
+            <span
+              *ngIf="!password?.value?.match('^(?=.*[A-Z])')"
+              class="ml-3 block"
+              >At least uppercase letter.</span
+            >
+            <span
+              *ngIf="!password?.value?.match('(?=.*[a-z])')"
+              class="ml-3 block"
+              >At least one lowercase letter.</span
+            >
+            <span
+              *ngIf="!password?.value?.match('(.*[0-9].*)')"
+              class="ml-3 block"
+              >At least one digit.</span
+            >
+            <span
+              *ngIf="!password?.value?.match('(?=.*[!@#$%^&*])')"
+              class="ml-3 block"
+              >At least one special character.</span
+            >
+            <span *ngIf="!password?.value?.match('.{8,}')" class="ml-3 block"
+              >At least 8 characters.</span
+            >
+          </div>
           <fithelper-front-shared-alert-ui
             *ngIf="password.dirty && password.hasError('required')"
             alertType="warning"

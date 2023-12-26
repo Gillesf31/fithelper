@@ -14,6 +14,7 @@ import { AuthenticationService } from '@fithelper/fithelper-front/authentication
 export class FithelperFrontRegisterFeatureComponent {
   public isAccountCreated: boolean | undefined = undefined;
   public isAccountAlreadyExists: boolean | undefined = undefined;
+  public readonly pwdRegex = /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
   readonly #authService = inject(AuthenticationService);
 
   public register(email: string, password: string) {
