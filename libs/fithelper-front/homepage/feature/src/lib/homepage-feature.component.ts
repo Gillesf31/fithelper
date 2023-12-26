@@ -11,6 +11,7 @@ import {
 import { AuthenticationService } from '@fithelper/fithelper-front/authentication/data-access';
 import { FithelperFrontLoginFeatureComponent } from '@fithelper/fithelper-front-login-feature';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'fithelper-homepage-feature',
@@ -19,6 +20,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
     CommonModule,
     ThemeTogglerComponent,
     FithelperFrontLoginFeatureComponent,
+    RouterOutlet,
   ],
   template: `
     <div class="absolute right-0">
@@ -28,16 +30,17 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
         [selectItems]="selectItems"
       />
     </div>
-    @if (session) {
-    <p>Logged in, user home page here</p>
-    <button class="btn btn-primary" (click)="signOut()">Sign out</button>
-    } @else {
-    <fithelper-front-login-feature />
-    }
+    <router-outlet />
+    <!--    @if (session) {-->
+    <!--    <p>Logged in, user home page here</p>-->
+    <!--    <button class="btn btn-primary" (click)="signOut()">Sign out</button>-->
+    <!--    } @else {-->
+    <!--    <fithelper-front-login-feature />-->
+    <!--    }-->
   `,
 })
 export class HomepageFeatureComponent implements OnInit {
-  public readonly labelThemeToggler = 'Theme';
+  public readonly labelThemeToggler = 'Choose your theme';
   public readonly selectItems: readonly SelectThemeType[] = [
     { label: 'Dark', value: 'night' },
     { label: 'Light', value: 'nord' },

@@ -1,16 +1,17 @@
 <div class="hero min-h-screen bg-base-200">
   <div class="hero-content flex-col">
     <div class="text-center lg:text-left">
-      <h1 class="text-5xl font-bold">Login here!</h1>
+      <h1 class="text-5xl font-bold">Register here!</h1>
       <p class="py-6 text-xl md:text-lg">
-        We will send you an e-mail with a magic link, just click on this link to
-        login
+        We will send you an e-mail to activate your account!
       </p>
     </div>
     <div class="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
       <form
-        #loginForm="ngForm"
-        (ngSubmit)="login(loginForm.value.email)"
+        #registerForm="ngForm"
+        (ngSubmit)="
+          register(registerForm.value.email, registerForm.value.password)
+        "
         class="card-body"
       >
         <div class="form-control">
@@ -38,34 +39,58 @@
             description="Your input should be an email!"
           />
         </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Password</span>
+          </label>
+          <input
+            #password="ngModel"
+            autocomplete="on"
+            class="input input-bordered placeholder:opacity-25"
+            name="password"
+            ngModel
+            placeholder="Password"
+            required
+            type="password"
+          />
+          <fithelper-front-shared-alert-ui
+            *ngIf="password.dirty && password.hasError('required')"
+            alertType="warning"
+            description="Password is required!"
+          />
+        </div>
         <div class="form-control mt-6">
           <button
-            [disabled]="loginForm.invalid"
+            [disabled]="registerForm.invalid"
             class="btn btn-primary"
             type="submit"
           >
-            Get my magic login link!
+            Create my account!
           </button>
         </div>
-        @if (isEmailSent && !userError) {
+        @if (isAccountCreated) {
         <fithelper-front-shared-alert-ui
           description="You can now check your email {{
-            userEmail
-          }} and click on the link!"
+            email.value
+          }} and click on the link to activate your account!"
           alertType="success"
         />
-        } @else if (userError) {
+        } @else if (isAccountCreated === false && isAccountAlreadyExists) {
         <fithelper-front-shared-alert-ui
-          description="We couldn't find your account with {{
-            userEmail
-          }} email!"
+          description="An account with this email already exists!"
+          alertType="error"
+        />
+        } @else if (isAccountCreated === false) {
+        <fithelper-front-shared-alert-ui
+          description="We couldn't create your account!"
           alertType="error"
         />
         }
       </form>
     </div>
-    <a [routerLink]="['../register']" class="link text-center"
-      >No account yet ? <span class="text-primary">Create one here !</span></a
+    <a [routerLink]="['../login']" class="link text-center"
+      >Already have an account ?
+      <span class="text-primary">Sign in here !</span></a
     >
   </div>
 </div>

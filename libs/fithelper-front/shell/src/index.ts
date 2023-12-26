@@ -1,1 +1,1 @@
-export { ROUTES } from './lib/shell.component';
+export { ROUTES } from './lib/routes';

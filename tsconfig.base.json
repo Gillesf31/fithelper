@@ -18,9 +18,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@fithelper/fithelper-front-homepage-register-feature": [
-        "libs/fithelper-front/homepage/register/feature/src/index.ts"
-      ],
       "@fithelper/fithelper-front-login-feature": [
         "libs/fithelper-front/login/feature/src/index.ts"
       ],
@@ -35,6 +32,9 @@
       ],
       "@fithelper/fithelper-front/homepage/util": [
         "libs/fithelper-front/homepage/util/src/index.ts"
+      ],
+      "@fithelper/fithelper-front/register/feature": [
+        "libs/fithelper-front/register/feature/src/index.ts"
       ],
       "@fithelper/fithelper-front/shell": [
         "libs/fithelper-front/shell/src/index.ts"
