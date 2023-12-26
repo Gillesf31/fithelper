@@ -1,10 +1,10 @@
 /* eslint-disable */
 export default {
   displayName: 'fithelper-front-homepage-register-feature',
-  preset: '../../../../../jest.preset.js',
+  preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory:
-    '../../../../../coverage/libs/fithelper-front/homepage/register/feature',
+    '../../../../coverage/libs/fithelper-front/register/feature',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

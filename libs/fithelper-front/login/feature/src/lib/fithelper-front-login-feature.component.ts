@@ -6,11 +6,12 @@ import { AlertComponent } from '@fithelper/fithelper-front-shared-ui-components-
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
 import { AuthOtpResponse } from '@supabase/supabase-js';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'fithelper-front-login-feature',
   standalone: true,
-  imports: [CommonModule, FormsModule, AlertComponent],
+  imports: [CommonModule, FormsModule, AlertComponent, RouterLink],
   templateUrl: './fithelper-front-login-feature.component.html',
 })
 export class FithelperFrontLoginFeatureComponent {
