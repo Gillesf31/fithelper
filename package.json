@@ -62,6 +62,7 @@
     "jest-environment-jsdom": "^29.4.1",
     "jest-preset-angular": "~13.1.4",
     "jsonc-eslint-parser": "^2.1.0",
+    "lint-staged": "^15.2.0",
     "nx": "17.2.0",
     "postcss": "^8.4.5",
     "prettier": "^2.6.2",
