@@ -14,6 +14,8 @@ import { AuthenticationService } from '@fithelper/fithelper-front/authentication
 export class FithelperFrontRegisterFeatureComponent {
   public isAccountCreated: boolean | undefined = undefined;
   public isAccountAlreadyExists: boolean | undefined = undefined;
+  public showPassword: boolean = false;
+  public passwordInputType: string = 'password';
   public readonly pwdRegex =
     /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,72}$/;
   readonly #authService = inject(AuthenticationService);
@@ -31,5 +33,12 @@ export class FithelperFrontRegisterFeatureComponent {
         this.isAccountCreated = false;
       }
     });
+  }
+
+  public toggleShowPassword(showPassword: boolean): void {
+    this.showPassword = showPassword;
+    this.showPassword
+      ? (this.passwordInputType = 'text')
+      : (this.passwordInputType = 'password');
   }
 }
