@@ -1,6 +1,6 @@
 {
   "*.{js,jsx,ts,tsx,json,md}": [
-    "npx nx affected -t lint --fix=true --parallel --uncommitted",
-    "npx nx format:write --uncommitted"
+    "npx nx affected -t lint --fix=true",
+    "npx nx format:write --files"
   ]
 }
