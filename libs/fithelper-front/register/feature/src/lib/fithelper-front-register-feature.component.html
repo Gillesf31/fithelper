@@ -73,6 +73,7 @@
             <span *ngIf="!password?.value?.match('.*\\W')" class="ml-3 block"
               >At least one special character.</span
             >
+
             <span
               *ngIf="password?.value?.match('^(.{0,7}|.{73,})$')"
               class="ml-3 block"
