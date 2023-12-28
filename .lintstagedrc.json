@@ -1,6 +1,3 @@
 {
-  "*.{js,jsx,ts,tsx,json,md}": [
-    "npx nx affected -t lint --fix=true",
-    "npx nx format:write --files"
-  ]
+  "*.{js,jsx,ts,tsx,json,md}": ["npx nx format:write --files"]
 }
