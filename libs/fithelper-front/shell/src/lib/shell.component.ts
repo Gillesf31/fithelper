@@ -36,7 +36,7 @@ export class FithelperShellComponent {
   ];
 
   public ngOnInit(): void {
-    handleAppTheme(this.selectItems[0].value, this.selectItems[1].value);
+    handleAppTheme(this.selectItems[1].value, this.selectItems[0].value);
   }
 
   public toggleTheme(theme: string): void {
