@@ -3,7 +3,7 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/fithelper-front/shell/src",
   "prefix": "fithelper",
-  "tags": ["scope:fithelper-front", "type:routes"],
+  "tags": ["scope:fithelper-front", "type:feature"],
   "projectType": "library",
   "targets": {
     "test": {

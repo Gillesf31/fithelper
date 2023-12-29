@@ -1,1 +1,1 @@
-export * from './lib/homepage-feature.component';
+export { HomepageFeatureComponent } from './lib/homepage-feature.component';
