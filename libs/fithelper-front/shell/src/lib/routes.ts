@@ -5,12 +5,14 @@ import {
   AuthenticationService,
   notAuthenticatedUser,
 } from '@fithelper/fithelper-front/authentication/data-access';
+import { SupabaseService } from '@fithelper/fithelper-front-supabase-data-access';
+import { ProfileService } from '@fithelper/data-access';
 
 export const ROUTES: Route[] = [
   {
     path: '',
     component: FithelperShellComponent,
-    providers: [AuthenticationService],
+    providers: [SupabaseService, AuthenticationService, ProfileService],
     children: [
       {
         path: '',
