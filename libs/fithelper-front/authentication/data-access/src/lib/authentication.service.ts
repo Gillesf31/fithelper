@@ -1,31 +1,26 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import {
   AuthChangeEvent,
   AuthResponse,
   AuthSession,
   AuthTokenResponse,
-  createClient,
   Session,
   SupabaseClient,
   User,
 } from '@supabase/supabase-js';
 import { BehaviorSubject, filter, from, Observable } from 'rxjs';
+import { SupabaseService } from '@fithelper/fithelper-front-supabase-data-access';
 
 @Injectable()
 export class AuthenticationService {
-  #supabase: SupabaseClient;
+  readonly #supabase: SupabaseClient = inject(SupabaseService).supabaseClient;
   #session: AuthSession | null = null;
-  #user$ = new BehaviorSubject<User | null | undefined>(undefined);
+  readonly #user$ = new BehaviorSubject<User | null | undefined>(undefined);
   public user$ = this.#user$
     .asObservable()
     .pipe(filter((value): value is User | null => value !== undefined));
 
   constructor() {
-    const supabaseUrl = 'https://cfxhxempgckdyyldndno.supabase.co';
-    const supabaseKey =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNmeGh4ZW1wZ2NrZHl5bGRuZG5vIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODIzODQyNDAsImV4cCI6MTk5Nzk2MDI0MH0.RPRoWrAsNC-VKng2l-AnsyvOaSw2oWsBoCp7cKb9bKA';
-    this.#supabase = createClient(supabaseUrl, supabaseKey);
-
     this.#supabase.auth.onAuthStateChange((_, session) => {
       this.#session = session;
       this.#user$.next(session?.user ?? null);
