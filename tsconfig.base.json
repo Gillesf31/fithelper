@@ -18,11 +18,17 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@fithelper/data-access": [
+        "libs/fithelper-front/profile/data-access/src/index.ts"
+      ],
       "@fithelper/fithelper-front-login-feature": [
         "libs/fithelper-front/login/feature/src/index.ts"
       ],
       "@fithelper/fithelper-front-shared-ui-components-alert-ui": [
         "libs/shared/ui-components/alert/ui/src/index.ts"
+      ],
+      "@fithelper/fithelper-front-supabase-data-access": [
+        "libs/fithelper-front/supabase/data-access/src/index.ts"
       ],
       "@fithelper/fithelper-front/authentication/data-access": [
         "libs/fithelper-front/authentication/data-access/src/index.ts"
@@ -38,6 +44,9 @@
       ],
       "@fithelper/fithelper-front/shell": [
         "libs/fithelper-front/shell/src/index.ts"
+      ],
+      "@fithelper/fithelper-front/supabase/database/util": [
+        "libs/fithelper-front/supabase/database/util/src/index.ts"
       ],
       "@fithelper/shared/local-storage/util": [
         "libs/shared/local-storage/util/src/index.ts"

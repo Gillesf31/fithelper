@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   SelectThemeType,
   ThemeTogglerComponent,
@@ -16,7 +16,7 @@ import { RouterOutlet } from '@angular/router';
   imports: [RouterOutlet, ThemeTogglerComponent],
   providers: [AuthenticationService],
   template: `
-    <div class="absolute right-0">
+    <div class="absolute right-0 top-0">
       <fithelper-theme-toggler
         (selectTheme)="toggleTheme($event)"
         [label]="labelThemeToggler"
@@ -26,7 +26,7 @@ import { RouterOutlet } from '@angular/router';
     <router-outlet></router-outlet>
   `,
 })
-export class FithelperShellComponent {
+export class FithelperShellComponent implements OnInit {
   public readonly labelThemeToggler = 'Choose your theme';
   public readonly selectItems: readonly SelectThemeType[] = [
     { label: 'Dark', value: 'night' },
