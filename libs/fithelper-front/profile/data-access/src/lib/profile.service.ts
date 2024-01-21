@@ -8,19 +8,19 @@ import { from, map, Observable } from 'rxjs';
 export class ProfileService {
   readonly #supabase = inject(SupabaseService).supabaseClient;
 
-  public getProfile(user: User): Observable<Tables<'profiles'> | null> {
+  public getProfile(user: User): Observable<Tables<'users'> | null> {
     return from(
       this.#supabase
-        .from('profiles')
+        .from('users')
         .select('*')
         .eq('id', user.id)
-        .returns<Tables<'profiles'>[]>()
+        .returns<Tables<'users'>[]>()
         .single()
     ).pipe(map((response) => response.data));
   }
 
-  public updateProfile(profile: Tables<'profiles'>) {
-    return this.#supabase.from('profiles').upsert({
+  public updateProfile(profile: Tables<'users'>) {
+    return this.#supabase.from('users').upsert({
       ...profile,
       updated_at: new Date(),
     });
