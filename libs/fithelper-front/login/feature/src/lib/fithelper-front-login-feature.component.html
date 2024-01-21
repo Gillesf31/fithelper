@@ -38,7 +38,12 @@
             description="Your input should be an email!"
           />
         </div>
-        <div class="form-control mt-6">
+        <div class="form-control mt-3">
+          @if (isLoading) {
+          <div class="text-center">
+            <fithelper-loader color="text-primary" />
+          </div>
+          }
           <button
             [disabled]="loginForm.invalid"
             class="btn btn-primary"
@@ -48,24 +53,24 @@
           </button>
         </div>
         @if (isEmailSent && !userError) {
-          <fithelper-front-shared-alert-ui
-            description="You can now check your email {{
+        <fithelper-front-shared-alert-ui
+          description="You can now check your email {{
             userEmail
           }} and click on the link!"
-            alertType="success"
-          />
+          alertType="success"
+        />
         } @else if (userError) {
-          <fithelper-front-shared-alert-ui
-            description="We couldn't find your account with {{
+        <fithelper-front-shared-alert-ui
+          description="We couldn't find your account with {{
             userEmail
           }} email!"
-            alertType="error"
-          />
+          alertType="error"
+        />
         }
       </form>
     </div>
     <a [routerLink]="['../register']" class="link link-hover text-center"
-    >No account yet ? <span class="text-primary">Create one here !</span></a
+      >No account yet ? <span class="text-primary">Create one here !</span></a
     >
   </div>
 </div>
