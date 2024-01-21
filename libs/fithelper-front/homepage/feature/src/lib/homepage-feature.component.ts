@@ -23,7 +23,7 @@ export class HomepageFeatureComponent implements OnInit {
   readonly #destroyRef = inject(DestroyRef);
 
   #user!: User;
-  #userProfile!: Tables<'profiles'>;
+  #userProfile!: Tables<'users'>;
 
   public ngOnInit(): void {
     this.#user$
@@ -34,10 +34,10 @@ export class HomepageFeatureComponent implements OnInit {
           return this.#profileService.getProfile(user);
         }),
         filter(
-          (profile: Tables<'profiles'> | null): profile is Tables<'profiles'> =>
+          (profile: Tables<'users'> | null): profile is Tables<'users'> =>
             !!profile
         ),
-        tap((profile: Tables<'profiles'>) => (this.#userProfile = profile)),
+        tap((profile: Tables<'users'>) => (this.#userProfile = profile)),
         takeUntilDestroyed(this.#destroyRef)
       )
       .subscribe();
