@@ -7,21 +7,30 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
 import { AuthOtpResponse } from '@supabase/supabase-js';
 import { RouterLink } from '@angular/router';
+import { LoaderComponent } from '@fithelper/fithelper-front-shared-ui-components-loader-ui';
 
 @Component({
   selector: 'fithelper-front-login-feature',
   standalone: true,
-  imports: [CommonModule, FormsModule, AlertComponent, RouterLink],
+  imports: [
+    CommonModule,
+    FormsModule,
+    AlertComponent,
+    RouterLink,
+    LoaderComponent,
+  ],
   templateUrl: './fithelper-front-login-feature.component.html',
 })
 export class FithelperFrontLoginFeatureComponent {
   public isEmailSent: boolean = false;
   public userEmail: string | undefined = undefined;
   public userError: string | undefined = undefined;
+  public isLoading: boolean = false;
   readonly #destroyRef = inject(DestroyRef);
   readonly #authService = inject(AuthenticationService);
 
   public login(email: string): void {
+    this.isLoading = true;
     this.isEmailSent = false;
     this.userError = undefined;
     this.userEmail = email;
@@ -36,6 +45,7 @@ export class FithelperFrontLoginFeatureComponent {
             this.userError = value.error.message;
           }
         }),
+        tap(() => (this.isLoading = false)),
         takeUntilDestroyed(this.#destroyRef)
       )
       .subscribe();

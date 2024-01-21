@@ -7,11 +7,12 @@ import { Tables } from '@fithelper/fithelper-front/supabase/database/util';
 import { User } from '@supabase/supabase-js';
 import { filter, switchMap, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { LoaderComponent } from '@fithelper/fithelper-front-shared-ui-components-loader-ui';
 
 @Component({
   selector: 'fithelper-homepage-feature',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, LoaderComponent],
   template: `
     <button class="btn btn-primary" (click)="signOut()">Sign out</button>
   `,
@@ -21,7 +22,6 @@ export class HomepageFeatureComponent implements OnInit {
   readonly #user$ = inject(AuthenticationService).user$;
   readonly #profileService = inject(ProfileService);
   readonly #destroyRef = inject(DestroyRef);
-
   #user!: User;
   #userProfile!: Tables<'users'>;
 
