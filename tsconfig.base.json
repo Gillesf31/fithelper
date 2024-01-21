@@ -27,6 +27,9 @@
       "@fithelper/fithelper-front-shared-ui-components-alert-ui": [
         "libs/shared/ui-components/alert/ui/src/index.ts"
       ],
+      "@fithelper/fithelper-front-shared-ui-components-loader-ui": [
+        "libs/shared/ui-components/loader/ui/src/index.ts"
+      ],
       "@fithelper/fithelper-front-supabase-data-access": [
         "libs/fithelper-front/supabase/data-access/src/index.ts"
       ],
