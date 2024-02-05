@@ -4,11 +4,18 @@ import { AlertComponent } from '@fithelper/fithelper-front-shared-ui-components-
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthenticationService } from '@fithelper/fithelper-front/authentication/data-access';
+import { LoaderComponent } from '@fithelper/fithelper-front-shared-ui-components-loader-ui';
 
 @Component({
   selector: 'fithelper-front-homepage-register-feature',
   standalone: true,
-  imports: [CommonModule, AlertComponent, FormsModule, RouterLink],
+  imports: [
+    CommonModule,
+    AlertComponent,
+    FormsModule,
+    RouterLink,
+    LoaderComponent,
+  ],
   templateUrl: './fithelper-front-register-feature.component.html',
 })
 export class FithelperFrontRegisterFeatureComponent {
@@ -16,11 +23,13 @@ export class FithelperFrontRegisterFeatureComponent {
   public isAccountAlreadyExists: boolean | undefined = undefined;
   public showPassword: boolean = false;
   public passwordInputType: string = 'password';
+  public isLoading: boolean = false;
   public readonly pwdRegex =
     /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,72}$/;
   readonly #authService = inject(AuthenticationService);
 
   public register(email: string, password: string) {
+    this.isLoading = true;
     this.#authService.signUp(email, password).subscribe((res) => {
       if (!res.error) {
         if (res.data.user?.identities?.length === 0) {
@@ -32,6 +41,7 @@ export class FithelperFrontRegisterFeatureComponent {
       } else {
         this.isAccountCreated = false;
       }
+      this.isLoading = false;
     });
   }
 
