@@ -3,3 +3,19 @@
 
 npx nx affected -t build --base=main --head=HEAD
 npx nx affected -t test --base=main --head=HEAD
+
+UNCOMMITTED_FILES=$(git status --porcelain)
+
+YELLOW='\033[1;33m'
+
+NC='\033[0m'
+
+if [ -n "$UNCOMMITTED_FILES" ]; then
+  echo "${YELLOW} /!\ Warning: There are uncommitted changes in your repository. /!\ ${NC}"
+  echo "${YELLOW}Your local hooks may pass, but this does not guarantee that the pushed code will be compliant.${NC}"
+  echo "${YELLOW}Please check for these files.${NC}"
+  echo "${YELLOW}Uncommitted files:${NC}"
+  echo "$UNCOMMITTED_FILES"
+fi
+
+exit 0
