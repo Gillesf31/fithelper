@@ -6,13 +6,25 @@ import {
   notAuthenticatedUser,
 } from '@fithelper/fithelper-front/authentication/data-access';
 import { SupabaseService } from '@fithelper/fithelper-front-supabase-data-access';
-import { ProfileService } from '@fithelper/data-access';
+import { importProvidersFrom } from '@angular/core';
+import { NgxsModule } from '@ngxs/store';
+import {
+  UserFacade,
+  UserService,
+  UserState,
+} from '@fithelper/fithelper-front/user/data-access';
 
 export const ROUTES: Route[] = [
   {
     path: '',
     component: FithelperShellComponent,
-    providers: [SupabaseService, AuthenticationService, ProfileService],
+    providers: [
+      SupabaseService,
+      AuthenticationService,
+      UserService,
+      UserFacade,
+      importProvidersFrom(NgxsModule.forFeature([UserState])),
+    ],
     children: [
       {
         path: '',

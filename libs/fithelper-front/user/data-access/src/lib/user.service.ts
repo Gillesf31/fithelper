@@ -5,10 +5,10 @@ import { SupabaseService } from '@fithelper/fithelper-front-supabase-data-access
 import { from, map, Observable } from 'rxjs';
 
 @Injectable()
-export class ProfileService {
+export class UserService {
   readonly #supabase = inject(SupabaseService).supabaseClient;
 
-  public getProfile(user: User): Observable<Tables<'users'> | null> {
+  public getUser(user: User): Observable<Tables<'users'> | null> {
     return from(
       this.#supabase
         .from('users')
@@ -19,9 +19,9 @@ export class ProfileService {
     ).pipe(map((response) => response.data));
   }
 
-  public updateProfile(profile: Tables<'users'>) {
+  public updateUser(user: Tables<'users'>) {
     return this.#supabase.from('users').upsert({
-      ...profile,
+      ...user,
       updated_at: new Date(),
     });
   }

@@ -1,10 +1,10 @@
 /* eslint-disable */
 export default {
-  displayName: 'data-access',
+  displayName: '@fithelper/fithelper-front/user/data-access',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory:
-    '../../../../coverage/libs/fithelper-front/profile/data-access',
+    '../../../../coverage/libs/fithelper-front/user/data-access',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
