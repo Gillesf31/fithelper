@@ -1,7 +1,7 @@
 {
   "name": "fithelper-front-user-data-access",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/fithelper-front/profile/data-access/src",
+  "sourceRoot": "libs/fithelper-front/user/data-access/src",
   "prefix": "fithelper",
   "tags": ["scope:fithelper-front", "type:data-access"],
   "projectType": "library",
