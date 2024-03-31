@@ -11,19 +11,13 @@ import {
   UserFacade,
   UserService,
 } from '@fithelper/fithelper-front/user/data-access';
+import { IntakeComponent } from '@fithelper/fithelper-front/homepage/intake/feature';
 
 @Component({
   selector: 'fithelper-homepage-feature',
   standalone: true,
-  imports: [CommonModule, LoaderComponent],
-  template: `
-    @if (isLoading) {
-    <fithelper-loader></fithelper-loader>
-    } @else if (user()?.username) {
-    <h1>Welcome {{ user()?.username }}</h1>
-    <button class="btn btn-primary" (click)="signOut()">Sign out</button>
-    }
-  `,
+  imports: [CommonModule, LoaderComponent, IntakeComponent],
+  templateUrl: 'homepage-feature.component.html',
 })
 export class HomepageFeatureComponent {
   public isLoading: boolean = false;
@@ -40,12 +34,12 @@ export class HomepageFeatureComponent {
       }),
       filter(
         (profile: Tables<'users'> | null): profile is Tables<'users'> =>
-          !!profile
+          !!profile,
       ),
       tap((profile: Tables<'users'>) => this.#userFacade.loadUser(profile)),
       tap(() => (this.isLoading = false)),
-      takeUntilDestroyed(this.#destroyRef)
-    )
+      takeUntilDestroyed(this.#destroyRef),
+    ),
   );
 
   public signOut(): void {
