@@ -36,6 +36,12 @@
       "@fithelper/fithelper-front/homepage/feature": [
         "libs/fithelper-front/homepage/feature/src/index.ts"
       ],
+      "@fithelper/fithelper-front/homepage/intake/data-access": [
+        "libs/fithelper-front/homepage/intake/data-access/src/index.ts"
+      ],
+      "@fithelper/fithelper-front/homepage/intake/feature": [
+        "libs/fithelper-front/homepage/intake/feature/src/index.ts"
+      ],
       "@fithelper/fithelper-front/homepage/util": [
         "libs/fithelper-front/homepage/util/src/index.ts"
       ],

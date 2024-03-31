@@ -5,7 +5,7 @@ import { SelectThemeType } from './models/select-theme.model';
   standalone: true,
   selector: 'fithelper-theme-toggler',
   template: `
-    <div class="dropdown mb-72">
+    <div class="dropdown">
       <div tabindex="0" role="button" class="btn m-1">
         {{ label }}
         <svg
@@ -24,17 +24,17 @@ import { SelectThemeType } from './models/select-theme.model';
         tabindex="0"
         class="right-0 dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box w-52"
       >
-        @for (item of selectItems;track item.value) {
-        <li (click)="onSelect(item.value)">
-          <input
-            data-choose-theme
-            type="radio"
-            name="theme-dropdown"
-            class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-            attr.aria-label="{{ item.label }}"
-            value="{{ item.value }}"
-          />
-        </li>
+        @for (item of selectItems; track item.value) {
+          <li (click)="onSelect(item.value)">
+            <input
+              data-choose-theme
+              type="radio"
+              name="theme-dropdown"
+              class="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+              attr.aria-label="{{ item.label }}"
+              value="{{ item.value }}"
+            />
+          </li>
         }
       </ul>
     </div>
@@ -48,7 +48,7 @@ export class ThemeTogglerComponent {
 
   @Output() public selectTheme = new EventEmitter<string>();
 
-  public onSelect(themeValue: string) {
+  public onSelect(themeValue: string): void {
     this.selectTheme.emit(themeValue);
   }
 }
