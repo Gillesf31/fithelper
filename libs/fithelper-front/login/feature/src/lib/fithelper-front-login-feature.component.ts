@@ -22,10 +22,10 @@ import { LoaderComponent } from '@fithelper/fithelper-front-shared-ui-components
   templateUrl: './fithelper-front-login-feature.component.html',
 })
 export class FithelperFrontLoginFeatureComponent {
-  public isEmailSent: boolean = false;
+  public isEmailSent = false;
   public userEmail: string | undefined = undefined;
   public userError: string | undefined = undefined;
-  public isLoading: boolean = false;
+  public isLoading = false;
   readonly #destroyRef = inject(DestroyRef);
   readonly #authService = inject(AuthenticationService);
 
@@ -46,7 +46,7 @@ export class FithelperFrontLoginFeatureComponent {
           }
         }),
         tap(() => (this.isLoading = false)),
-        takeUntilDestroyed(this.#destroyRef)
+        takeUntilDestroyed(this.#destroyRef),
       )
       .subscribe();
   }

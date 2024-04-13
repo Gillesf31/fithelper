@@ -20,7 +20,7 @@ import { IntakeComponent } from '@fithelper/fithelper-front/homepage/intake/feat
   templateUrl: 'homepage-feature.component.html',
 })
 export class HomepageFeatureComponent {
-  public isLoading: boolean = false;
+  public isLoading = false;
   readonly #supabaseClient = inject(SupabaseService).supabaseClient;
   readonly #profileService = inject(UserService);
   readonly #destroyRef = inject(DestroyRef);
