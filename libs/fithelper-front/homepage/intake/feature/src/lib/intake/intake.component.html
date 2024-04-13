@@ -30,6 +30,11 @@
       />
     </label>
   </div>
+  <label class="swap place-content-start text-xl my-3">
+    <input type="checkbox" />
+    <div class="swap-on">Metric</div>
+    <div class="swap-off">Imperial</div>
+  </label>
   <label class="input input-bordered flex items-center mb-3 gap-2">
     Age
     <input
@@ -158,11 +163,11 @@
     </label>
   </div>
   <div class="my-3">
-    <p class="text-lg">Your maintenance intake is : {{ bmr() }} calories.</p>
+    <p class="text-lg">Your maintenance intake is : {{ bmr() }} kcal.</p>
     <p class="text-lg">
-      Your muscle gain intake is : {{ muscleGains() }} calories.
+      Your muscle gain intake is : {{ muscleGains() }} kcal.
     </p>
-    <p class="text-lg">Your fat loss intake is : {{ loseFat() }} calories.</p>
+    <p class="text-lg">Your fat loss intake is : {{ loseFat() }} kcal.</p>
   </div>
   <button class="btn btn-primary" type="submit">Calculate</button>
 </form>
