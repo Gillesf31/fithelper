@@ -26,6 +26,7 @@ export class IntakeComponent {
     gender: 'male',
     activityFactor: 1.4,
     caloriesAdjustment: '250',
+    measurementSystem: 'metric',
   };
   public bmr: WritableSignal<number> = signal(0);
   public weight: WritableSignal<number> = signal(0);
@@ -51,5 +52,12 @@ export class IntakeComponent {
     this.caloriesAdjustment.set(parseInt(userStats.caloriesAdjustment));
     this.weight.set(userStats.weight);
     this.bmr.set(this.#intakeService.calculateMaintenance(userStats));
+  }
+
+  public updateSystem(): void {
+    this.userCaloriesIntake.measurementSystem =
+      this.userCaloriesIntake.measurementSystem === 'metric'
+        ? 'imperial'
+        : 'metric';
   }
 }
