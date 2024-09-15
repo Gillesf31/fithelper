@@ -18,50 +18,53 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@fithelper/fithelper-front-login-feature": [
-        "libs/fithelper-front/login/feature/src/index.ts"
-      ],
-      "@fithelper/fithelper-front-shared-ui-components-alert-ui": [
-        "libs/shared/ui-components/alert/ui/src/index.ts"
-      ],
-      "@fithelper/fithelper-front-shared-ui-components-loader-ui": [
-        "libs/shared/ui-components/loader/ui/src/index.ts"
-      ],
       "@fithelper/fithelper-front-supabase-data-access": [
-        "libs/fithelper-front/supabase/data-access/src/index.ts"
+        "libs/fithelper-front/supabase/data-access/index.ts"
       ],
       "@fithelper/fithelper-front/authentication/data-access": [
-        "libs/fithelper-front/authentication/data-access/src/index.ts"
+        "libs/fithelper-front/authentication/data-access/index.ts"
       ],
       "@fithelper/fithelper-front/homepage/feature": [
-        "libs/fithelper-front/homepage/feature/src/index.ts"
+        "libs/fithelper-front/homepage/feature/index.ts"
       ],
       "@fithelper/fithelper-front/homepage/intake/data-access": [
-        "libs/fithelper-front/homepage/intake/data-access/src/index.ts"
+        "libs/fithelper-front/homepage/intake/data-access/index.ts"
       ],
       "@fithelper/fithelper-front/homepage/intake/feature": [
-        "libs/fithelper-front/homepage/intake/feature/src/index.ts"
+        "libs/fithelper-front/homepage/intake/feature/index.ts"
       ],
       "@fithelper/fithelper-front/homepage/util": [
-        "libs/fithelper-front/homepage/util/src/index.ts"
+        "libs/fithelper-front/homepage/util/index.ts"
+      ],
+      "@fithelper/fithelper-front/login/feature": [
+        "libs/fithelper-front/login/feature/index.ts"
       ],
       "@fithelper/fithelper-front/register/feature": [
-        "libs/fithelper-front/register/feature/src/index.ts"
+        "libs/fithelper-front/register/feature/index.ts"
       ],
-      "@fithelper/fithelper-front/shell": [
-        "libs/fithelper-front/shell/src/index.ts"
+      "@fithelper/fithelper-front/shell/routes": [
+        "libs/fithelper-front/shell/routes/index.ts"
+      ],
+      "@fithelper/fithelper-front/supabase/data-access": [
+        "libs/fithelper-front/supabase/data-access/index.ts"
       ],
       "@fithelper/fithelper-front/supabase/database/util": [
-        "libs/fithelper-front/supabase/database/util/src/index.ts"
+        "libs/fithelper-front/supabase/database/util/index.ts"
       ],
       "@fithelper/fithelper-front/user/data-access": [
-        "libs/fithelper-front/user/data-access/src/index.ts"
+        "libs/fithelper-front/user/data-access/index.ts"
       ],
       "@fithelper/shared/local-storage/util": [
-        "libs/shared/local-storage/util/src/index.ts"
+        "libs/shared/local-storage/util/index.ts"
       ],
       "@fithelper/shared/theme-toggler/ui": [
-        "libs/shared/theme-toggler/ui/src/index.ts"
+        "libs/shared/theme-toggler/ui/index.ts"
+      ],
+      "@fithelper/shared/ui-components/alert/ui": [
+        "libs/shared/ui-components/alert/ui/index.ts"
+      ],
+      "@fithelper/shared/ui-components/loader/ui": [
+        "libs/shared/ui-components/loader/ui/index.ts"
       ]
     }
   },

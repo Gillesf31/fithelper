@@ -5,3 +5,5 @@
 .angular
 nx.json
 tsconfig.base.json
+
+/.nx/workspace-data

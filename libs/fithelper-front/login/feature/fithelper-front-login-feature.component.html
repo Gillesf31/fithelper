@@ -1,0 +1,76 @@
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content flex-col">
+    <div class="text-center lg:text-left">
+      <h1 class="text-5xl font-bold">Login here!</h1>
+      <p class="py-6 text-xl md:text-lg">
+        We will send you an e-mail with a magic link, just click on this link to
+        login
+      </p>
+    </div>
+    <div class="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+      <form
+        #loginForm="ngForm"
+        (ngSubmit)="login(loginForm.value.email)"
+        class="card-body"
+      >
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Email</span>
+          </label>
+          <input
+            #email="ngModel"
+            class="input input-bordered placeholder:opacity-25"
+            name="email"
+            ngModel
+            pattern="[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}"
+            placeholder="example@fithelper.com"
+            required
+            type="email"
+          />
+          <fithelper-front-shared-alert-ui
+            *ngIf="email.dirty && email.hasError('required')"
+            alertType="warning"
+            description="Email is required!"
+          />
+          <fithelper-front-shared-alert-ui
+            *ngIf="email.dirty && email.hasError('pattern')"
+            alertType="warning"
+            description="Your input should be an email!"
+          />
+        </div>
+        <div class="form-control mt-3">
+          @if (isLoading) {
+            <div class="text-center">
+              <fithelper-loader color="text-primary" />
+            </div>
+          }
+          <button
+            [disabled]="loginForm.invalid"
+            class="btn btn-primary"
+            type="submit"
+          >
+            Get my magic login link!
+          </button>
+        </div>
+        @if (isEmailSent && !userError) {
+          <fithelper-front-shared-alert-ui
+            description="You can now check your email {{
+              userEmail
+            }} and click on the link!"
+            alertType="success"
+          />
+        } @else if (userError) {
+          <fithelper-front-shared-alert-ui
+            description="We couldn't find your account with {{
+              userEmail
+            }} email!"
+            alertType="error"
+          />
+        }
+      </form>
+    </div>
+    <a [routerLink]="['../register']" class="link link-hover text-center"
+      >No account yet ? <span class="text-primary">Create one here !</span></a
+    >
+  </div>
+</div>
