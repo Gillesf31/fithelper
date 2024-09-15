@@ -24,6 +24,9 @@
       "@fithelper/fithelper-front/authentication/data-access": [
         "libs/fithelper-front/authentication/data-access/index.ts"
       ],
+      "@fithelper/fithelper-front/environments/util": [
+        "libs/fithelper-front/environments/util/index.ts"
+      ],
       "@fithelper/fithelper-front/homepage/feature": [
         "libs/fithelper-front/homepage/feature/index.ts"
       ],
