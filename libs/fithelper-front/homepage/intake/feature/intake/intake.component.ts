@@ -22,12 +22,12 @@ import { ActivityFactorComponent } from '../activityFactor/activity-factor.compo
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IntakeComponent {
-  public userCaloriesIntake: UserInformationType = {
+  public defaultUserInformation: WritableSignal<UserInformationType> = signal({
     gender: 'male',
     activityFactor: 1.4,
     caloriesAdjustment: '250',
     measurementSystem: 'metric',
-  };
+  });
   public bmr: WritableSignal<number> = signal(0);
   public weight: WritableSignal<number> = signal(0);
   public caloriesAdjustment: WritableSignal<number> = signal(0);
@@ -55,9 +55,14 @@ export class IntakeComponent {
   }
 
   public updateSystem(): void {
-    this.userCaloriesIntake.measurementSystem =
-      this.userCaloriesIntake.measurementSystem === 'metric'
-        ? 'imperial'
-        : 'metric';
+    console.warn('updateSystem');
+    this.defaultUserInformation.set({
+      ...this.defaultUserInformation(),
+      measurementSystem:
+        this.defaultUserInformation().measurementSystem === 'metric'
+          ? 'imperial'
+          : 'metric',
+    });
+    console.warn('updateSystem end', this.defaultUserInformation());
   }
 }
