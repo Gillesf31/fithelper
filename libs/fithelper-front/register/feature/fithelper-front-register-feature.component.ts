@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -8,7 +8,6 @@ import { LoaderComponent } from '@fithelper/shared/ui-components/loader/ui';
 
 @Component({
   selector: 'fithelper-front-homepage-register-feature',
-  standalone: true,
   imports: [
     CommonModule,
     AlertComponent,
@@ -16,6 +15,7 @@ import { LoaderComponent } from '@fithelper/shared/ui-components/loader/ui';
     RouterLink,
     LoaderComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './fithelper-front-register-feature.component.html',
 })
 export class FithelperFrontRegisterFeatureComponent {

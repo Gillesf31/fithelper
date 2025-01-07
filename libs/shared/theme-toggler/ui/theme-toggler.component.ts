@@ -1,9 +1,15 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+} from '@angular/core';
 import { SelectThemeType } from './models/select-theme.model';
 
 @Component({
-  standalone: true,
   selector: 'fithelper-theme-toggler',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="dropdown">
       <div tabindex="0" role="button" class="btn m-1">

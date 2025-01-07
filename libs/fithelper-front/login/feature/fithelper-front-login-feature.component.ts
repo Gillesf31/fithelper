@@ -1,4 +1,9 @@
-import { Component, DestroyRef, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationService } from '@fithelper/fithelper-front/authentication/data-access';
@@ -11,7 +16,6 @@ import { LoaderComponent } from '@fithelper/shared/ui-components/loader/ui';
 
 @Component({
   selector: 'fithelper-front-login-feature',
-  standalone: true,
   imports: [
     CommonModule,
     FormsModule,
@@ -19,6 +23,7 @@ import { LoaderComponent } from '@fithelper/shared/ui-components/loader/ui';
     RouterLink,
     LoaderComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './fithelper-front-login-feature.component.html',
 })
 export class FithelperFrontLoginFeatureComponent {

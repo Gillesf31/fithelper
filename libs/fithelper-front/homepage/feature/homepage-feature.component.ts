@@ -1,4 +1,10 @@
-import { Component, DestroyRef, inject, Signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  Signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SupabaseService } from '@fithelper/fithelper-front-supabase-data-access';
 import { AuthenticationService } from '@fithelper/fithelper-front/authentication/data-access';
@@ -15,9 +21,9 @@ import { LoaderComponent } from '@fithelper/shared/ui-components/loader/ui';
 
 @Component({
   selector: 'fithelper-homepage-feature',
-  standalone: true,
   imports: [CommonModule, LoaderComponent, IntakeComponent],
   templateUrl: 'homepage-feature.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomepageFeatureComponent {
   public isLoading = false;
