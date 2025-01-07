@@ -13,7 +13,6 @@
         "outputPath": "dist/apps/fithelper-front",
         "index": "apps/fithelper-front/src/index.html",
         "browser": "apps/fithelper-front/src/main.ts",
-        "polyfills": ["zone.js"],
         "tsConfig": "apps/fithelper-front/tsconfig.app.json",
         "assets": [
           "apps/fithelper-front/src/favicon.ico",

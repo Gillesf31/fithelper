@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   SelectThemeType,
   ThemeTogglerComponent,
@@ -12,9 +12,9 @@ import { RouterOutlet } from '@angular/router';
 import { IntakeService } from '@fithelper/fithelper-front/homepage/intake/data-access';
 
 @Component({
-  standalone: true,
   selector: 'fithelper-shell',
   imports: [RouterOutlet, ThemeTogglerComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [AuthenticationService, IntakeService],
   template: `
     <div class="absolute right-0 top-0">

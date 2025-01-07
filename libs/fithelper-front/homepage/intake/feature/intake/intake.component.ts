@@ -15,7 +15,6 @@ import {
 import { ActivityFactorComponent } from '../activityFactor/activity-factor.component';
 
 @Component({
-  standalone: true,
   imports: [CommonModule, FormsModule, ActivityFactorComponent],
   templateUrl: './intake.component.html',
   selector: 'fithelper-intake',
