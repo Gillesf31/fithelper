@@ -1,20 +1,38 @@
 name: CI
-on:
-  pull_request:
-
+'on':
+  pull_request: null
 jobs:
   main:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version:
+          - 22
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v3
+          ref: ${{ github.event.pull_request.head.sha }}
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
         with:
-          node-version: 20
-          cache: 'npm'
-      - run: npm ci
-      - uses: nrwl/nx-set-shas@v3
-      - run: git branch --track main origin/main
-      - run: npx nx format:check
-      - run: npx nx affected -t lint,test,build --parallel=3
+          version: 9
+      - name: 'Use Node.js ${{ matrix.node-version }}'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '${{ matrix.node-version }}'
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Set Base and Head for PR
+        run: |
+          git fetch origin --prune
+          git fetch origin ${{ github.base_ref }}
+          BASE_SHA=$(git merge-base HEAD origin/${{ github.base_ref }})
+          HEAD_SHA=$(git rev-parse HEAD)
+          echo "NX_BASE=$BASE_SHA" >> $GITHUB_ENV
+          echo "NX_HEAD=$HEAD_SHA" >> $GITHUB_ENV
+      - name: Format Check
+        run: pnpm nx format:check --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+      - name: Run affected commands
+        run: pnpm nx affected -t lint,test,build --parallel=3 --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
