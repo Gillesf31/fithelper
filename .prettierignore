@@ -5,5 +5,6 @@
 .angular
 nx.json
 tsconfig.base.json
+pnpm-lock.yaml
 
 /.nx/workspace-data
