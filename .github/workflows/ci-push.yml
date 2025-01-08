@@ -26,5 +26,5 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - uses: nrwl/nx-set-shas@v3
-      - run: 'pnpx nx format:check'
-      - run: 'pnpx nx affected -t lint,test,build --parallel=3'
+      - run: 'pnpm nx format:check'
+      - run: 'pnpm nx affected -t lint,test,build --parallel=3'

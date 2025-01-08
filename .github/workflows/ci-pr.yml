@@ -1,13 +1,13 @@
 name: CI
-on:
-  pull_request:
-
+'on':
+  pull_request: null
 jobs:
   main:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [ 22 ]
+        node-version:
+          - 22
     steps:
       - uses: actions/checkout@v4
         with:
@@ -16,14 +16,14 @@ jobs:
         uses: pnpm/action-setup@v4
         with:
           version: 9
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: 'Use Node.js ${{ matrix.node-version }}'
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
+          node-version: '${{ matrix.node-version }}'
+          cache: pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
       - uses: nrwl/nx-set-shas@v3
       - run: git branch --track main origin/main
-      - run: pnpx nx format:check
-      - run: pnpx nx affected -t lint,test,build --parallel=3
+      - run: 'pnpm nx format:check'
+      - run: 'pnpm nx affected -t lint,test,build --parallel=3'
