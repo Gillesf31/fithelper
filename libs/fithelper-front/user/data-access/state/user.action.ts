@@ -1,7 +1,9 @@
 import { Tables } from '@fithelper/fithelper-front/supabase/database/util';
+import { createAction, props } from '@ngrx/store';
 
-export class LoadUser {
-  static readonly type = '[User] User load after login';
-
-  constructor(public user: Tables<'users'>) {}
-}
+export const loadUser = createAction(
+  '[User] User load after login',
+  props<{
+    user: Tables<'users'>;
+  }>(),
+);

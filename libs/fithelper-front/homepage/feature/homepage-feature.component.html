@@ -1,4 +1,4 @@
-@if (isLoading) {
+@if (isLoading()) {
   <fithelper-loader></fithelper-loader>
 } @else if (user()?.username) {
   <button class="btn btn-primary" (click)="signOut()">Sign out</button>

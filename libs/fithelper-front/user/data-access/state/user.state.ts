@@ -1,22 +1,16 @@
-import { Injectable } from '@angular/core';
-import { Action, State, StateContext } from '@ngxs/store';
 import { Tables } from '@fithelper/fithelper-front/supabase/database/util';
-import { LoadUser } from './user.action';
+import { loadUser } from './user.action';
+import { createReducer, on } from '@ngrx/store';
 
 export type UserStateModel = {
   user: Tables<'users'> | undefined;
 };
 
-@State<UserStateModel>({
-  name: 'connectedUser',
-  defaults: {
-    user: undefined,
-  },
-})
-@Injectable()
-export class UserState {
-  @Action(LoadUser)
-  loadUser(ctx: StateContext<UserStateModel>, action: LoadUser) {
-    ctx.patchState({ user: action.user });
-  }
-}
+export const initialUserState: UserStateModel = {
+  user: undefined,
+};
+
+export const userReducer = createReducer(
+  initialUserState,
+  on(loadUser, (state, { user }): UserStateModel => ({ ...state, user })),
+);

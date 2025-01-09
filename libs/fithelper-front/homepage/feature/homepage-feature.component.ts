@@ -3,6 +3,7 @@ import {
   Component,
   DestroyRef,
   inject,
+  signal,
   Signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,6 +19,7 @@ import {
 } from '@fithelper/fithelper-front/user/data-access';
 import { IntakeComponent } from '@fithelper/fithelper-front/homepage/intake/feature';
 import { LoaderComponent } from '@fithelper/shared/ui-components/loader/ui';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'fithelper-homepage-feature',
@@ -26,14 +28,14 @@ import { LoaderComponent } from '@fithelper/shared/ui-components/loader/ui';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomepageFeatureComponent {
-  public isLoading = false;
+  public isLoading = signal(false);
   readonly #supabaseClient = inject(SupabaseService).supabaseClient;
   readonly #profileService = inject(UserService);
   readonly #destroyRef = inject(DestroyRef);
   readonly #userFacade = inject(UserFacade);
   public readonly user: Signal<Tables<'users'> | undefined> = toSignal(
     inject(AuthenticationService).user$.pipe(
-      tap(() => (this.isLoading = true)),
+      tap(() => this.isLoading.set(true)),
       filter((user: User | null): user is User => !!user),
       switchMap((user: User) => {
         return this.#profileService.getUser(user);
@@ -43,12 +45,14 @@ export class HomepageFeatureComponent {
           !!profile,
       ),
       tap((profile: Tables<'users'>) => this.#userFacade.loadUser(profile)),
-      tap(() => (this.isLoading = false)),
+      tap(() => this.isLoading.set(false)),
       takeUntilDestroyed(this.#destroyRef),
     ),
   );
+  readonly #router = inject(Router);
 
   public signOut(): void {
     this.#supabaseClient.auth.signOut();
+    this.#router.navigate(['/login']);
   }
 }
