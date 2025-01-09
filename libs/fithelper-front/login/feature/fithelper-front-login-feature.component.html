@@ -39,7 +39,7 @@
           />
         </div>
         <div class="form-control mt-3">
-          @if (isLoading) {
+          @if (isLoading()) {
             <div class="text-center">
               <fithelper-loader color="text-primary" />
             </div>
@@ -52,17 +52,17 @@
             Get my magic login link!
           </button>
         </div>
-        @if (isEmailSent && !userError) {
+        @if (isEmailSent() && !userError()) {
           <fithelper-front-shared-alert-ui
             description="You can now check your email {{
-              userEmail
+              userEmail()
             }} and click on the link!"
             alertType="success"
           />
-        } @else if (userError) {
+        } @else if (userError()) {
           <fithelper-front-shared-alert-ui
             description="We couldn't find your account with {{
-              userEmail
+              userEmail()
             }} email!"
             alertType="error"
           />

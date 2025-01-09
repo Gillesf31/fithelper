@@ -3,6 +3,8 @@ import {
   Component,
   DestroyRef,
   inject,
+  signal,
+  WritableSignal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -27,30 +29,30 @@ import { LoaderComponent } from '@fithelper/shared/ui-components/loader/ui';
   templateUrl: './fithelper-front-login-feature.component.html',
 })
 export class FithelperFrontLoginFeatureComponent {
-  public isEmailSent = false;
-  public userEmail: string | undefined = undefined;
-  public userError: string | undefined = undefined;
-  public isLoading = false;
+  public isEmailSent = signal(false);
+  public userEmail: WritableSignal<string | undefined> = signal(undefined);
+  public userError: WritableSignal<string | undefined> = signal(undefined);
+  public isLoading = signal(false);
   readonly #destroyRef = inject(DestroyRef);
   readonly #authService = inject(AuthenticationService);
 
   public login(email: string): void {
-    this.isLoading = true;
-    this.isEmailSent = false;
-    this.userError = undefined;
-    this.userEmail = email;
+    this.isLoading.set(true);
+    this.isEmailSent.set(false);
+    this.userError.set(undefined);
+    this.userEmail.set(email);
     this.#authService
       .signInWithMagicLink(email)
       .pipe(
         tap((value: AuthOtpResponse) => {
           if (!value.error) {
-            this.isEmailSent = true;
+            this.isEmailSent.set(true);
           } else {
-            this.isEmailSent = false;
-            this.userError = value.error.message;
+            this.isEmailSent.set(false);
+            this.userError.set(value.error.message);
           }
         }),
-        tap(() => (this.isLoading = false)),
+        tap(() => this.isLoading.set(false)),
         takeUntilDestroyed(this.#destroyRef),
       )
       .subscribe();
