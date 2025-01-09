@@ -1,9 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  EventEmitter,
-  Input,
-  Output,
+  input,
+  output,
 } from '@angular/core';
 import { SelectThemeType } from './models/select-theme.model';
 
@@ -13,7 +12,7 @@ import { SelectThemeType } from './models/select-theme.model';
   template: `
     <div class="dropdown">
       <div tabindex="0" role="button" class="btn m-1">
-        {{ label }}
+        {{ label() }}
         <svg
           width="12px"
           height="12px"
@@ -30,7 +29,7 @@ import { SelectThemeType } from './models/select-theme.model';
         tabindex="0"
         class="right-0 dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box w-52"
       >
-        @for (item of selectItems; track item.value) {
+        @for (item of selectItems(); track item.value) {
           <li (click)="onSelect(item.value)">
             <input
               data-choose-theme
@@ -47,12 +46,10 @@ import { SelectThemeType } from './models/select-theme.model';
   `,
 })
 export class ThemeTogglerComponent {
-  @Input({ required: true }) public label = 'Default label';
-  @Input({ required: true }) public selectItems:
-    | readonly SelectThemeType[]
-    | undefined;
+  public label = input.required<string>();
+  public selectItems = input.required<readonly SelectThemeType[]>();
 
-  @Output() public selectTheme = new EventEmitter<string>();
+  public selectTheme = output<string>();
 
   public onSelect(themeValue: string): void {
     this.selectTheme.emit(themeValue);

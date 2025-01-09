@@ -1,9 +1,9 @@
 <div
-  [ngClass]="alertType ? 'alert-' + alertType : ''"
+  [ngClass]="alertType() ? 'alert-' + alertType() : ''"
   class="flex gap-0 sm:gap-2 sm:grid mt-3 alert"
   role="alert"
 >
-  @switch (alertType) {
+  @switch (alertType()) {
     @case ('success') {
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -65,5 +65,5 @@
       </svg>
     }
   }
-  <span>{{ description }}</span>
+  <span>{{ description() }}</span>
 </div>

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -7,18 +7,16 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `<span
     class="loading loading-spinner"
-    [class]="size"
-    [ngClass]="color ?? ''"
+    [class]="size()"
+    [ngClass]="color() ?? ''"
   ></span>`,
 })
 export class LoaderComponent {
-  @Input() public size:
-    | 'loading-xs'
-    | 'loading-sm'
-    | 'loading-md'
-    | 'loading-lg' = 'loading-lg';
+  public size = input<
+    'loading-xs' | 'loading-sm' | 'loading-md' | 'loading-lg'
+  >('loading-lg');
 
-  @Input() public color:
+  public color = input<
     | 'text-primary'
     | 'text-secondary'
     | 'text-accent'
@@ -27,5 +25,6 @@ export class LoaderComponent {
     | 'text-success'
     | 'text-warning'
     | 'text-error'
-    | undefined = undefined;
+    | undefined
+  >(undefined);
 }
