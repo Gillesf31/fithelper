@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,11 +8,9 @@ import { CommonModule } from '@angular/common';
   templateUrl: './alert.component.html',
 })
 export class AlertComponent {
-  @Input({ required: false }) public alertType:
-    | 'success'
-    | 'info'
-    | 'warning'
-    | 'error'
-    | undefined = undefined;
-  @Input({ required: true }) public description: string | undefined;
+  public alertType = input<
+    'success' | 'info' | 'warning' | 'error' | undefined
+  >(undefined);
+
+  public description = input.required<string>();
 }
