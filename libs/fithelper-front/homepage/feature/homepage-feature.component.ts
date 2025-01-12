@@ -52,7 +52,8 @@ export class HomepageFeatureComponent {
   readonly #router = inject(Router);
 
   public signOut(): void {
-    this.#supabaseClient.auth.signOut();
-    this.#router.navigate(['/login']);
+    this.#supabaseClient.auth.signOut().then(() => {
+      this.#router.navigate(['/login']);
+    });
   }
 }

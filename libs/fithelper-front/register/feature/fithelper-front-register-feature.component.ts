@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  signal,
+  WritableSignal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -19,36 +26,39 @@ import { LoaderComponent } from '@fithelper/shared/ui-components/loader/ui';
   templateUrl: './fithelper-front-register-feature.component.html',
 })
 export class FithelperFrontRegisterFeatureComponent {
-  public isAccountCreated: boolean | undefined = undefined;
-  public isAccountAlreadyExists: boolean | undefined = undefined;
-  public showPassword = false;
-  public passwordInputType = 'password';
-  public isLoading = false;
-  public readonly pwdRegex =
+  protected readonly pwdRegex =
     /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*\W)(?!.* ).{8,72}$/;
+  protected doesAccountExist: WritableSignal<boolean | undefined> =
+    signal(undefined);
+  protected showPassword: WritableSignal<boolean> = signal(false);
+
+  protected passwordInputType = computed(() => {
+    if (this.showPassword()) {
+      return 'text';
+    } else {
+      return 'password';
+    }
+  });
+
+  protected isLoading = signal(false);
+  protected isAccountCreated: WritableSignal<boolean | undefined> =
+    signal(undefined);
   readonly #authService = inject(AuthenticationService);
 
-  public register(email: string, password: string) {
-    this.isLoading = true;
+  protected register(email: string, password: string) {
+    this.isLoading.set(true);
     this.#authService.signUp(email, password).subscribe((res) => {
       if (!res.error) {
         if (res.data.user?.identities?.length === 0) {
-          this.isAccountCreated = false;
-          this.isAccountAlreadyExists = true;
+          this.isAccountCreated.set(false);
+          this.doesAccountExist.set(true);
         } else {
-          this.isAccountCreated = true;
+          this.isAccountCreated.set(true);
         }
       } else {
-        this.isAccountCreated = false;
+        this.isAccountCreated.set(false);
       }
-      this.isLoading = false;
+      this.isLoading.set(false);
     });
-  }
-
-  public toggleShowPassword(showPassword: boolean): void {
-    this.showPassword = showPassword;
-    this.showPassword
-      ? (this.passwordInputType = 'text')
-      : (this.passwordInputType = 'password');
   }
 }
