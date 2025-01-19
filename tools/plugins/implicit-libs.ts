@@ -8,7 +8,14 @@ import { Optional } from 'nx/src/project-graph/plugins';
 import { globIterate } from 'glob';
 import { readFileSync } from 'fs';
 
-const VALID_LIB_TYPES = ['routes', 'feature', 'data-access', 'util', 'ui'];
+const VALID_LIB_TYPES = [
+  'routes',
+  'feature',
+  'data-access',
+  'util',
+  'ui',
+  'translation',
+];
 type ProjectConfigurationType = Optional<ProjectConfiguration, 'root'>;
 
 export const createNodesV2: CreateNodesV2 = [
