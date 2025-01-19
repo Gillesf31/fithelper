@@ -32,6 +32,9 @@ importers:
       '@angular/router':
         specifier: 19.0.5
         version: 19.0.5(@angular/common@19.0.5(@angular/core@19.0.5(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.0.5(rxjs@7.8.1)(zone.js@0.15.0))(@angular/platform-browser@19.0.5(@angular/animations@19.0.5(@angular/core@19.0.5(rxjs@7.8.1)(zone.js@0.15.0)))(@angular/common@19.0.5(@angular/core@19.0.5(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1))(@angular/core@19.0.5(rxjs@7.8.1)(zone.js@0.15.0)))(rxjs@7.8.1)
+      '@jsverse/transloco':
+        specifier: ^7.5.1
+        version: 7.5.1(@angular/core@19.0.5(rxjs@7.8.1)(zone.js@0.15.0))(typescript@5.6.3)
       '@ngrx/store':
         specifier: ^19.0.0
         version: 19.0.0(@angular/core@19.0.5(rxjs@7.8.1)(zone.js@0.15.0))(rxjs@7.8.1)
@@ -1572,6 +1575,15 @@ packages:
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
+
+  '@jsverse/transloco-utils@7.0.2':
+    resolution: {integrity: sha512-zud1M68mMC/Pu6irEba+Z2SzmwmmPzUPnBzMKlcGdIhzUe1z41cqQutK1M0QaQpY4h4yhumXcNaY/Ot6piv6QQ==}
+    engines: {node: '>=16'}
+
+  '@jsverse/transloco@7.5.1':
+    resolution: {integrity: sha512-2GtJKFKmwvw7ygkf51kNMNJ1PSiepvDIqgFM1Sl8aX6if/kZ4/FNKVz0t64QP2JHUU16I2Le05In7IbiRE7ZrQ==}
+    peerDependencies:
+      '@angular/core': '>=16.0.0'
 
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
@@ -4153,6 +4165,10 @@ packages:
     resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
     engines: {node: '>=12'}
 
+  fs-extra@11.2.0:
+    resolution: {integrity: sha512-PmDi3uwK5nFuXh7XDTlVnS17xJS7vW36is2+w3xcv8SVxiB4NyATf4ctkVY5bkSjX0Y4nbvZCq1/EjtEyr9ktw==}
+    engines: {node: '>=14.14'}
+
   fs-extra@8.1.0:
     resolution: {integrity: sha512-yhlQgA6mnOJUKOsRUFsgJdQCvkKhcz8tlZG5HBQfReYZy46OwLcY+Zia0mtdHsOo9y/hP+CxMN0TU9QxoOtG4g==}
     engines: {node: '>=6 <7 || >=8'}
@@ -4239,6 +4255,11 @@ packages:
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
+    deprecated: Glob versions prior to v9 are no longer supported
+
+  glob@8.1.0:
+    resolution: {integrity: sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==}
+    engines: {node: '>=12'}
     deprecated: Glob versions prior to v9 are no longer supported
 
   global-dirs@0.1.1:
@@ -6077,6 +6098,11 @@ packages:
 
   regjsparser@0.12.0:
     resolution: {integrity: sha512-cnE+y8bz4NhMjISKbgeVJtqNbtf5QpjZP+Bslo+UqkIt9QPnX9q095eiRRASJG1/tz6dlNr6Z5NsBiWYokp6EQ==}
+    hasBin: true
+
+  replace-in-file@7.2.0:
+    resolution: {integrity: sha512-CiLXVop3o8/h2Kd1PwKPPimmS9wUV0Ki6Fl8+1ITD35nB3Gl/PrW5IONpTE0AXk0z4v8WYcpEpdeZqMXvSnWpg==}
+    engines: {node: '>=10'}
     hasBin: true
 
   require-directory@2.1.1:
@@ -8817,6 +8843,26 @@ snapshots:
   '@jsonjoy.com/util@1.5.0(tslib@2.8.1)':
     dependencies:
       tslib: 2.8.1
+
+  '@jsverse/transloco-utils@7.0.2(typescript@5.6.3)':
+    dependencies:
+      cosmiconfig: 8.3.6(typescript@5.6.3)
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - typescript
+
+  '@jsverse/transloco@7.5.1(@angular/core@19.0.5(rxjs@7.8.1)(zone.js@0.15.0))(typescript@5.6.3)':
+    dependencies:
+      '@angular/core': 19.0.5(rxjs@7.8.1)(zone.js@0.15.0)
+      '@jsverse/transloco-utils': 7.0.2(typescript@5.6.3)
+      fs-extra: 11.2.0
+      glob: 10.4.5
+      lodash.kebabcase: 4.1.1
+      ora: 5.4.1
+      replace-in-file: 7.2.0
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - typescript
 
   '@leichtgewicht/ip-codec@2.0.5': {}
 
@@ -11900,6 +11946,12 @@ snapshots:
       jsonfile: 6.1.0
       universalify: 2.0.1
 
+  fs-extra@11.2.0:
+    dependencies:
+      graceful-fs: 4.2.11
+      jsonfile: 6.1.0
+      universalify: 2.0.1
+
   fs-extra@8.1.0:
     dependencies:
       graceful-fs: 4.2.11
@@ -11999,6 +12051,14 @@ snapshots:
       minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
+
+  glob@8.1.0:
+    dependencies:
+      fs.realpath: 1.0.0
+      inflight: 1.0.6
+      inherits: 2.0.4
+      minimatch: 5.1.6
+      once: 1.4.0
 
   global-dirs@0.1.1:
     dependencies:
@@ -14106,6 +14166,12 @@ snapshots:
   regjsparser@0.12.0:
     dependencies:
       jsesc: 3.0.2
+
+  replace-in-file@7.2.0:
+    dependencies:
+      chalk: 4.1.2
+      glob: 8.1.0
+      yargs: 17.7.2
 
   require-directory@2.1.1: {}
 

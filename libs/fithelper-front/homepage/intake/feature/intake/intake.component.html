@@ -3,10 +3,12 @@
   (ngSubmit)="calculateMaintenance(caloriesForm.value)"
   class="flex flex-col justify-between"
 >
-  <p class="text-lg">Gender</p>
+  <p class="text-lg">{{ 'activityFactor.gender' | transloco }}</p>
   <div class="form-control">
     <label class="label cursor-pointer">
-      <span class="label-text text-md">Male</span>
+      <span class="label-text text-md">{{
+        'activityFactor.male' | transloco
+      }}</span>
       <input
         [(ngModel)]="defaultUserInformation().gender"
         checked
@@ -19,7 +21,9 @@
   </div>
   <div class="form-control">
     <label class="label cursor-pointer">
-      <span class="label-text text-md">Female</span>
+      <span class="label-text text-md">{{
+        'activityFactor.female' | transloco
+      }}</span>
       <input
         [(ngModel)]="defaultUserInformation().gender"
         checked
@@ -33,28 +37,28 @@
   <label class="swap place-content-start text-xl my-3">
     <input (click)="updateSystem()" type="checkbox" />
     @if (this.defaultUserInformation().measurementSystem === 'metric') {
-      <div class="swap-on">Imperial</div>
-      <div class="swap-off">Metric</div>
+      <div class="swap-on">{{ 'activityFactor.imperial' | transloco }}</div>
+      <div class="swap-off">{{ 'activityFactor.metric' | transloco }}</div>
     } @else {
-      <div class="swap-off">Metric</div>
-      <div class="swap-on">Imperial</div>
+      <div class="swap-off">{{ 'activityFactor.metric' | transloco }}</div>
+      <div class="swap-on">{{ 'activityFactor.imperial' | transloco }}</div>
     }
   </label>
   <label class="input input-bordered flex items-center mb-3 gap-2">
-    Age
+    {{ 'activityFactor.age' | transloco }}
     <input
       class="grow bg-transparent placeholder:opacity-25"
       max="99"
       min="13"
       name="age"
       ngModel
-      placeholder="69 ans"
+      placeholder="69 {{ 'activityFactor.yearsOld' | transloco }}"
       required
       type="number"
     />
   </label>
   <label class="input input-bordered flex items-center mb-3 gap-2">
-    Poids (kg)
+    {{ 'activityFactor.weight' | transloco }}
     <input
       class="grow bg-transparent placeholder:opacity-25"
       max="400"
@@ -67,7 +71,7 @@
     />
   </label>
   <label class="input input-bordered flex items-center mb-3 gap-2">
-    Taille (cm)
+    {{ 'activityFactor.height' | transloco }}
     <input
       class="grow bg-transparent placeholder:opacity-25"
       max="300"
@@ -80,9 +84,9 @@
     />
   </label>
   <div class="flex flex-row">
-    <div class="tooltip" data-tip="Activity factor information">
+    <div class="tooltip">
       <svg
-        class="w-6 h-6 self-center hover:cursor-help"
+        class="w-6 h-6 self-center hover:cursor-pointer"
         fill="currentColor"
         onclick="modal_af.showModal()"
         viewBox="0 0 24 24"
@@ -105,6 +109,7 @@
     </div>
     <div class="flex flex-col flex-grow pl-2">
       <input
+        (change)="updateActivityFactor($event)"
         [(ngModel)]="defaultUserInformation().activityFactor"
         class="range range-primary"
         max="1.9"
@@ -130,9 +135,13 @@
     </div>
   </div>
   <div class="form-control mt-5">
-    <p class="text-lg">Base calorie adjustment</p>
+    <p class="text-lg">
+      {{ 'activityFactor.baseCaloriesAdjustment' | transloco }}
+    </p>
     <label class="label cursor-pointer">
-      <span class="label-text text-md">+/- 250 kcal (recommended)</span>
+      <span class="label-text text-md"
+        >+/- 250 kcal ({{ 'activityFactor.recommended' | transloco }})</span
+      >
       <input
         [(ngModel)]="defaultUserInformation().caloriesAdjustment"
         checked
@@ -170,11 +179,24 @@
     </label>
   </div>
   <div class="my-3">
-    <p class="text-lg">Your maintenance intake is : {{ bmr() }} kcal.</p>
     <p class="text-lg">
-      Your muscle gain intake is : {{ muscleGains() }} kcal.
+      {{
+        'activityFactor.maintenanceIntakeInfo' | transloco: { calories: bmr() }
+      }}
     </p>
-    <p class="text-lg">Your fat loss intake is : {{ loseFat() }} kcal.</p>
+    <p class="text-lg">
+      {{
+        'activityFactor.muscleIntakeInfo'
+          | transloco: { calories: muscleGains() }
+      }}
+    </p>
+    <p class="text-lg">
+      {{
+        'activityFactor.fatLossIntakeInfo' | transloco: { calories: loseFat() }
+      }}
+    </p>
   </div>
-  <button class="btn btn-primary" type="submit">Calculate</button>
+  <button class="btn btn-primary" type="submit">
+    {{ 'activityFactor.calculate' | transloco }}
+  </button>
 </form>

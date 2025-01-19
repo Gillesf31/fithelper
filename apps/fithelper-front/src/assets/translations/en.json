@@ -1,0 +1,61 @@
+{
+  "email": "E-mail",
+  "password": "Password",
+  "requiredEmail": "Email is required!",
+  "requiredPassword": "Password is required!",
+  "inputShouldBeEmail": "Your input should be an email!",
+  "theme": "Theme",
+  "welcome": "Welcome",
+  "signOut": "Sign out",
+  "login": {
+    "title": "Login here!",
+    "magicLinkInfo": "We'll send you an e-mail with a magic link, just click on this link to login",
+    "magicLinkBtnLabel": "Get my magic login link!",
+    "noAccount": "No account yet?",
+    "createAccount": "Create one here !",
+    "noAccountEmail": "We couldn't find your account with {{email}} email!",
+    "checkEmail": "You can now check your email {{email}} and click on the link!"
+  },
+  "register": {
+    "title": "Create an account here",
+    "activationInfo": "We'll send you an e-mail to activate your account!",
+    "password": {
+      "shouldContain": "Your password should contain",
+      "uppercase": "At least one uppercase letter.",
+      "lowercase": "At least one lowercase letter.",
+      "digit": "At least one digit.",
+      "specialChar": "At least one special character.",
+      "minMaxCharacters": "At least 8 characters and maximum of 72 characters."
+    },
+    "checkEmail": "You can now check your email {{email}} and click on the link to activate your account!",
+    "accountAlreadyExists": "An account with this email already exists!",
+    "error": "We couldn't create your account!",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign in here!"
+  },
+  "activityFactor": {
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "metric": "Metric",
+    "imperial": "Imperial",
+    "weight": "Weight",
+    "height": "Height",
+    "baseCaloriesAdjustment": "Base calories adjustment",
+    "recommended": "recommended",
+    "maintenanceIntakeInfo": "Your maintenance intake is : {{ calories }} kcal.",
+    "muscleIntakeInfo": "Your muscle gain intake is : {{ calories }} kcal.",
+    "fatLossIntakeInfo": "Your fat loss intake is : {{ calories }} kcal.",
+    "calculate": "Calculate",
+    "age": "Age",
+    "yearsOld": "years old",
+    "levelOfActivity": "Level of activity",
+    "activityFactor": "Activity factor",
+    "bedRest": "Bed rest (Bed ridden - Unconscious)",
+    "sedentary": "Sedentary (Little or no exercise)",
+    "light": "Light exercise (1-3 days per week)",
+    "moderate": "Moderate exercise (3-5 days per week)",
+    "heavy": "Heavy exercise (6-7 days per week)",
+    "veryHeavy": "Very heavy exercise (twice per day, extra heavy workouts)"
+  }
+}

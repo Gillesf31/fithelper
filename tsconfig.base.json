@@ -63,6 +63,9 @@
       "@fithelper/shared/theme-toggler/ui": [
         "libs/shared/theme-toggler/ui/index.ts"
       ],
+      "@fithelper/shared/translations/translation": [
+        "libs/shared/translations/translation/index.ts"
+      ],
       "@fithelper/shared/ui-components/alert/ui": [
         "libs/shared/ui-components/alert/ui/index.ts"
       ],

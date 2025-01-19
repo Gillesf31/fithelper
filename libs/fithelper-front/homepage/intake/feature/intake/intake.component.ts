@@ -13,32 +13,34 @@ import {
   UserInformationType,
 } from '@fithelper/fithelper-front/homepage/intake/data-access';
 import { ActivityFactorComponent } from '../activityFactor/activity-factor.component';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
-  imports: [CommonModule, FormsModule, ActivityFactorComponent],
+  imports: [CommonModule, FormsModule, ActivityFactorComponent, TranslocoPipe],
   templateUrl: './intake.component.html',
   selector: 'fithelper-intake',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IntakeComponent {
-  public defaultUserInformation: WritableSignal<UserInformationType> = signal({
-    gender: 'male',
-    activityFactor: 1.4,
-    caloriesAdjustment: '250',
-    measurementSystem: 'metric',
-  });
-  public bmr: WritableSignal<number> = signal(0);
-  public weight: WritableSignal<number> = signal(0);
-  public caloriesAdjustment: WritableSignal<number> = signal(0);
+  protected defaultUserInformation: WritableSignal<UserInformationType> =
+    signal({
+      gender: 'male',
+      activityFactor: 1.4,
+      caloriesAdjustment: '250',
+      measurementSystem: 'metric',
+    });
+  protected bmr: WritableSignal<number> = signal(0);
+  protected weight: WritableSignal<number> = signal(0);
+  protected caloriesAdjustment: WritableSignal<number> = signal(0);
   readonly #intakeService = inject(IntakeService);
-  public muscleGains = computed(() => {
+  protected muscleGains = computed(() => {
     return this.#intakeService.calculateCaloriesIntake(
       this.bmr(),
       this.weight(),
       this.caloriesAdjustment(),
     );
   });
-  public loseFat = computed(() => {
+  protected loseFat = computed(() => {
     return this.#intakeService.calculateCaloriesIntake(
       this.bmr(),
       this.weight(),
@@ -46,15 +48,14 @@ export class IntakeComponent {
     );
   });
 
-  public calculateMaintenance(userStats: UserInformationType): void {
+  protected calculateMaintenance(userStats: UserInformationType): void {
     if (!userStats.age || !userStats.weight || !userStats.height) return;
     this.caloriesAdjustment.set(parseInt(userStats.caloriesAdjustment));
     this.weight.set(userStats.weight);
     this.bmr.set(this.#intakeService.calculateMaintenance(userStats));
   }
 
-  public updateSystem(): void {
-    console.warn('updateSystem');
+  protected updateSystem(): void {
     this.defaultUserInformation.set({
       ...this.defaultUserInformation(),
       measurementSystem:
@@ -62,6 +63,14 @@ export class IntakeComponent {
           ? 'imperial'
           : 'metric',
     });
-    console.warn('updateSystem end', this.defaultUserInformation());
+  }
+
+  protected updateActivityFactor(event: Event): void {
+    const activityFactor = (event.target as HTMLInputElement)
+      .value as unknown as UserInformationType['activityFactor'];
+    this.defaultUserInformation.set({
+      ...this.defaultUserInformation(),
+      activityFactor,
+    });
   }
 }

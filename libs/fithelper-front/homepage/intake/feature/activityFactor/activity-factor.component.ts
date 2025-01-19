@@ -1,27 +1,36 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'fithelper-activity-factor',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslocoPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: ` <table class="table">
     <tbody>
       <tr>
         <td>
           <p>
-            <b><span>Level of Activity</span></b>
+            <b
+              ><span>{{
+                'activityFactor.levelOfActivity' | transloco
+              }}</span></b
+            >
           </p>
         </td>
         <td>
           <p>
-            <b><span>Activity factor</span></b>
+            <b
+              ><span>{{ 'activityFactor.activityFactor' | transloco }}</span></b
+            >
           </p>
         </td>
       </tr>
       <tr>
         <td>
-          <p><span>Bed rest (Bed ridden - Unconscious)</span></p>
+          <p>
+            <span>{{ 'activityFactor.bedRest' | transloco }}</span>
+          </p>
         </td>
         <td>
           <p><span>1.0-1.1</span></p>
@@ -29,7 +38,9 @@ import { CommonModule } from '@angular/common';
       </tr>
       <tr>
         <td>
-          <p><span>Sedentary (Little to no exercise)</span></p>
+          <p>
+            <span>{{ 'activityFactor.sedentary' | transloco }}</span>
+          </p>
         </td>
         <td>
           <p><span>1.2</span></p>
@@ -37,7 +48,9 @@ import { CommonModule } from '@angular/common';
       </tr>
       <tr>
         <td>
-          <p><span>Light exercise (1-3 days per week)</span></p>
+          <p>
+            <span>{{ 'activityFactor.light' | transloco }}</span>
+          </p>
         </td>
         <td>
           <p><span>1.3</span></p>
@@ -45,7 +58,9 @@ import { CommonModule } from '@angular/common';
       </tr>
       <tr>
         <td>
-          <p><span>Moderate exercise (3-5 days per week)</span></p>
+          <p>
+            <span>{{ 'activityFactor.moderate' | transloco }}</span>
+          </p>
         </td>
         <td>
           <p><span>1.5</span></p>
@@ -53,7 +68,9 @@ import { CommonModule } from '@angular/common';
       </tr>
       <tr>
         <td>
-          <p><span>Heavy exercise (6-7 days per week)</span></p>
+          <p>
+            <span>{{ 'activityFactor.heavy' | transloco }}</span>
+          </p>
         </td>
         <td>
           <p><span>1.7</span></p>
@@ -62,9 +79,7 @@ import { CommonModule } from '@angular/common';
       <tr>
         <td>
           <p>
-            <span
-              >Very heavy exercise (twice per day, extra heavy workouts)</span
-            >
+            <span>{{ 'activityFactor.veryHeavy' | transloco }}</span>
           </p>
         </td>
         <td>

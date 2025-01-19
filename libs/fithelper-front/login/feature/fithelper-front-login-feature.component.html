@@ -1,10 +1,11 @@
 <div class="hero min-h-screen bg-base-200">
   <div class="hero-content flex-col">
     <div class="text-center lg:text-left">
-      <h1 class="text-5xl font-bold">Login here!</h1>
+      <h1 class="text-5xl font-bold">
+        <p>{{ 'login.title' | transloco }}</p>
+      </h1>
       <p class="py-6 text-xl md:text-lg">
-        We will send you an e-mail with a magic link, just click on this link to
-        login
+        {{ 'login.magicLinkInfo' | transloco }}
       </p>
     </div>
     <div class="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -15,7 +16,7 @@
       >
         <div class="form-control">
           <label class="label">
-            <span class="label-text">Email</span>
+            <span class="label-text">{{ 'email' | transloco }}</span>
           </label>
           <input
             #email="ngModel"
@@ -30,12 +31,12 @@
           <fithelper-front-shared-alert-ui
             *ngIf="email.dirty && email.hasError('required')"
             alertType="warning"
-            description="Email is required!"
+            description="{{ 'emailRequired' | transloco }}"
           />
           <fithelper-front-shared-alert-ui
             *ngIf="email.dirty && email.hasError('pattern')"
             alertType="warning"
-            description="Your input should be an email!"
+            description="{{ 'inputShouldBeEmail' | transloco }}"
           />
         </div>
         <div class="form-control mt-3">
@@ -49,28 +50,31 @@
             class="btn btn-primary"
             type="submit"
           >
-            Get my magic login link!
+            {{ 'login.magicLinkBtnLabel' | transloco }}
           </button>
         </div>
         @if (isEmailSent() && !userError()) {
           <fithelper-front-shared-alert-ui
-            description="You can now check your email {{
-              userEmail()
-            }} and click on the link!"
+            description="{{
+              'login.checkEmail' | transloco: { email: userEmail() }
+            }}"
             alertType="success"
           />
         } @else if (userError()) {
           <fithelper-front-shared-alert-ui
-            description="We couldn't find your account with {{
-              userEmail()
-            }} email!"
+            description="{{
+              'login.noAccountEmail' | transloco: { email: userEmail() }
+            }}"
             alertType="error"
           />
         }
       </form>
     </div>
     <a [routerLink]="['../register']" class="link link-hover text-center"
-      >No account yet ? <span class="text-primary">Create one here !</span></a
+      >{{ 'login.noAccount' | transloco }}
+      <span class="text-primary">{{
+        'login.createAccount' | transloco
+      }}</span></a
     >
   </div>
 </div>

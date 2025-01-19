@@ -1,0 +1,61 @@
+{
+  "email": "E-mail",
+  "password": "Mot de passe",
+  "requiredEmail": "Il faut renseigner ton e-mail !",
+  "requiredPassword": "Il faut un mot de passe !",
+  "inputShouldBeEmail": "Ton entrée doit être une adresse e-mail valide !",
+  "theme": "Thème",
+  "welcome": "Bienvenue",
+  "signOut": "Déconnexion",
+  "login": {
+    "title": "Connecte-toi ici !",
+    "magicLinkInfo": "On va t’envoyer un e-mail avec un lien magique, clique dessus pour te connecter.",
+    "magicLinkBtnLabel": "Envoie-moi mon lien magique !",
+    "noAccount": "Pas encore de compte ?",
+    "createAccount": "Crée-en un ici !",
+    "noAccountEmail": "On n’a pas trouvé de compte avec l’adresse e-mail {{email}} !",
+    "checkEmail": "Va vérifier tes e-mails à {{email}} et clique sur le lien !"
+  },
+  "register": {
+    "title": "Crée un compte ici",
+    "activationInfo": "On t’enverra un e-mail pour activer ton compte !",
+    "password": {
+      "shouldContain": "Ton mot de passe doit contenir :",
+      "uppercase": "Au moins une majuscule.",
+      "lowercase": "Au moins une minuscule.",
+      "digit": "Au moins un chiffre.",
+      "specialChar": "Au moins un caractère spécial.",
+      "minMaxCharacters": "Entre 8 et 72 caractères."
+    },
+    "checkEmail": "Va vérifier tes e-mails à {{email}} et clique sur le lien pour activer ton compte !",
+    "accountAlreadyExists": "Un compte avec cette adresse e-mail existe déjà !",
+    "error": "On n’a pas pu créer ton compte !",
+    "alreadyHaveAccount": "Tu as déjà un compte ?",
+    "signIn": "Connecte-toi ici !"
+  },
+  "activityFactor": {
+    "gender": "Genre",
+    "male": "Homme",
+    "female": "Femme",
+    "metric": "Métrique",
+    "imperial": "Impérial",
+    "weight": "Poids",
+    "height": "Taille",
+    "baseCaloriesAdjustment": "Ajustement des calories de base",
+    "recommended": "recommandé",
+    "maintenanceIntakeInfo": "Ton apport calorique de maintien est : {{ calories }} kcal.",
+    "muscleIntakeInfo": "Ton apport calorique pour prendre du muscle est : {{ calories }} kcal.",
+    "fatLossIntakeInfo": "Ton apport calorique pour perdre du gras est : {{ calories }} kcal.",
+    "calculate": "Calculer",
+    "age": "Âge",
+    "yearsOld": "ans",
+    "levelOfActivity": "Niveau d’activité",
+    "activityFactor": "Facteur d’activité",
+    "bedRest": "Repos couché, alité",
+    "sedentary": "Sédentaire (peu ou pas d’exercice)",
+    "light": "Activité légère (1 à 3 jours par semaine)",
+    "moderate": "Activité modérée (3 à 5 jours par semaine)",
+    "heavy": "Activité intense (6 à 7 jours par semaine)",
+    "veryHeavy": "Activité très lourde (Travail physique, 2 entrainements par jour)"
+  }
+}

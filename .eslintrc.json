@@ -14,7 +14,11 @@
             "depConstraints": [
               {
                 "sourceTag": "type:app",
-                "onlyDependOnLibsWithTags": ["type:routes", "type:feature"]
+                "onlyDependOnLibsWithTags": [
+                  "type:routes",
+                  "type:feature",
+                  "type:translation"
+                ]
               },
               {
                 "sourceTag": "scope:fithelper-front",
