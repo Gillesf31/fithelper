@@ -20,10 +20,11 @@ import {
 import { IntakeComponent } from '@fithelper/fithelper-front/homepage/intake/feature';
 import { LoaderComponent } from '@fithelper/shared/ui-components/loader/ui';
 import { Router } from '@angular/router';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'fithelper-homepage-feature',
-  imports: [CommonModule, LoaderComponent, IntakeComponent],
+  imports: [CommonModule, LoaderComponent, IntakeComponent, TranslocoPipe],
   templateUrl: 'homepage-feature.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

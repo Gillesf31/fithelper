@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import {
   SelectThemeType,
   ThemeTogglerComponent,
@@ -10,6 +15,7 @@ import {
 import { AuthenticationService } from '@fithelper/fithelper-front/authentication/data-access';
 import { RouterOutlet } from '@angular/router';
 import { IntakeService } from '@fithelper/fithelper-front/homepage/intake/data-access';
+import { TranslocoService } from '@jsverse/transloco';
 
 @Component({
   selector: 'fithelper-shell',
@@ -28,7 +34,8 @@ import { IntakeService } from '@fithelper/fithelper-front/homepage/intake/data-a
   `,
 })
 export class FithelperShellComponent implements OnInit {
-  public readonly labelThemeToggler = 'Choose your theme';
+  public readonly labelThemeToggler =
+    inject(TranslocoService).translate('theme');
   public readonly selectItems: readonly SelectThemeType[] = [
     { label: 'Dark', value: 'night' },
     { label: 'Light', value: 'nord' },

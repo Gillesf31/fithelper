@@ -1,8 +1,12 @@
 @if (isLoading()) {
   <fithelper-loader></fithelper-loader>
 } @else if (user()?.username) {
-  <button class="btn btn-primary" (click)="signOut()">Sign out</button>
-  <h1 class="text-center text-3xl my-10">Welcome {{ user()?.username }}</h1>
+  <button class="btn btn-primary" (click)="signOut()">
+    {{ 'signOut' | transloco }}
+  </button>
+  <h1 class="text-center text-3xl my-10">
+    {{ 'welcome' | transloco }} {{ user()?.username }}
+  </h1>
   <div class="flex flex-col justify-center items-center mt-10">
     <fithelper-intake />
   </div>

@@ -15,6 +15,7 @@ import { AuthOtpResponse } from '@supabase/supabase-js';
 import { RouterLink } from '@angular/router';
 import { AlertComponent } from '@fithelper/shared/ui-components/alert/ui';
 import { LoaderComponent } from '@fithelper/shared/ui-components/loader/ui';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'fithelper-front-login-feature',
@@ -24,6 +25,7 @@ import { LoaderComponent } from '@fithelper/shared/ui-components/loader/ui';
     AlertComponent,
     RouterLink,
     LoaderComponent,
+    TranslocoModule,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './fithelper-front-login-feature.component.html',

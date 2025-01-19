@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
 import { AuthenticationService } from '@fithelper/fithelper-front/authentication/data-access';
 import { AlertComponent } from '@fithelper/shared/ui-components/alert/ui';
 import { LoaderComponent } from '@fithelper/shared/ui-components/loader/ui';
+import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'fithelper-front-homepage-register-feature',
@@ -21,6 +22,7 @@ import { LoaderComponent } from '@fithelper/shared/ui-components/loader/ui';
     FormsModule,
     RouterLink,
     LoaderComponent,
+    TranslocoPipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './fithelper-front-register-feature.component.html',
