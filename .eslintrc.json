@@ -49,6 +49,10 @@
                 "onlyDependOnLibsWithTags": ["type:ui", "type:util"]
               },
               {
+                "sourceTag": "type:translation",
+                "onlyDependOnLibsWithTags": ["type:translation", "type:util"]
+              },
+              {
                 "sourceTag": "type:util",
                 "onlyDependOnLibsWithTags": ["type:util"]
               },
