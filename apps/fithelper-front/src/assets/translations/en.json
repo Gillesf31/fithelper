@@ -46,7 +46,7 @@
     "maintenanceIntakeInfo": "Your maintenance intake is : {{ calories }} kcal.",
     "muscleIntakeInfo": "Your muscle gain intake is : {{ calories }} kcal.",
     "fatLossIntakeInfo": "Your fat loss intake is : {{ calories }} kcal.",
-    "calculate": "Calculate",
+    "fillForm": "Fill the entire form to see your intake.",
     "age": "Age",
     "yearsOld": "years old",
     "levelOfActivity": "Level of activity",

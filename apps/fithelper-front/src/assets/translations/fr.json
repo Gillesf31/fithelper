@@ -46,7 +46,7 @@
     "maintenanceIntakeInfo": "Ton apport calorique de maintien est : {{ calories }} kcal.",
     "muscleIntakeInfo": "Ton apport calorique pour prendre du muscle est : {{ calories }} kcal.",
     "fatLossIntakeInfo": "Ton apport calorique pour perdre du gras est : {{ calories }} kcal.",
-    "calculate": "Calculer",
+    "fillForm": "Renseigne tout le formulaire pour voir ton apport calorique.",
     "age": "Âge",
     "yearsOld": "ans",
     "levelOfActivity": "Niveau d’activité",

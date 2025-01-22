@@ -1,17 +1,13 @@
-<form
-  #caloriesForm="ngForm"
-  (ngSubmit)="calculateMaintenance(caloriesForm.value)"
-  class="flex flex-col justify-between"
->
-  <p class="text-lg">{{ 'activityFactor.gender' | transloco }}</p>
+<div class="flex flex-col">
+  <p class="text-xl font-semibold">{{ 'activityFactor.gender' | transloco }}</p>
   <div class="form-control">
     <label class="label cursor-pointer">
-      <span class="label-text text-md">{{
+      <span class="label-text text-lg">{{
         'activityFactor.male' | transloco
       }}</span>
       <input
-        [(ngModel)]="defaultUserInformation().gender"
-        checked
+        (click)="updateGender($event)"
+        [checked]="userInformation().gender === 'male'"
         class="radio checked:bg-blue-500"
         name="gender"
         type="radio"
@@ -21,12 +17,12 @@
   </div>
   <div class="form-control">
     <label class="label cursor-pointer">
-      <span class="label-text text-md">{{
+      <span class="label-text text-lg">{{
         'activityFactor.female' | transloco
       }}</span>
       <input
-        [(ngModel)]="defaultUserInformation().gender"
-        checked
+        (click)="updateGender($event)"
+        [checked]="userInformation().gender === 'female'"
         class="radio checked:bg-pink-500"
         name="gender"
         type="radio"
@@ -34,9 +30,9 @@
       />
     </label>
   </div>
-  <label class="swap place-content-start text-xl my-3">
+  <label class="swap place-content-start text-xl font-semibold my-3">
     <input (click)="updateSystem()" type="checkbox" />
-    @if (this.defaultUserInformation().measurementSystem === 'metric') {
+    @if (userInformation().measurementSystem === 'metric') {
       <div class="swap-on">{{ 'activityFactor.imperial' | transloco }}</div>
       <div class="swap-off">{{ 'activityFactor.metric' | transloco }}</div>
     } @else {
@@ -47,6 +43,7 @@
   <label class="input input-bordered flex items-center mb-3 gap-2">
     {{ 'activityFactor.age' | transloco }}
     <input
+      (keyup)="updateAge($event)"
       class="grow bg-transparent placeholder:opacity-25"
       max="99"
       min="13"
@@ -60,6 +57,7 @@
   <label class="input input-bordered flex items-center mb-3 gap-2">
     {{ 'activityFactor.weight' | transloco }}
     <input
+      (keyup)="updateWeight($event)"
       class="grow bg-transparent placeholder:opacity-25"
       max="400"
       min="0"
@@ -73,6 +71,7 @@
   <label class="input input-bordered flex items-center mb-3 gap-2">
     {{ 'activityFactor.height' | transloco }}
     <input
+      (keyup)="updateHeight($event)"
       class="grow bg-transparent placeholder:opacity-25"
       max="300"
       min="0"
@@ -110,7 +109,7 @@
     <div class="flex flex-col flex-grow pl-2">
       <input
         (change)="updateActivityFactor($event)"
-        [(ngModel)]="defaultUserInformation().activityFactor"
+        [value]="userInformation().activityFactor"
         class="range range-primary"
         max="1.9"
         min="1"
@@ -135,16 +134,16 @@
     </div>
   </div>
   <div class="form-control mt-5">
-    <p class="text-lg">
+    <p class="text-xl font-semibold">
       {{ 'activityFactor.baseCaloriesAdjustment' | transloco }}
     </p>
     <label class="label cursor-pointer">
-      <span class="label-text text-md"
+      <span class="label-text text-lg"
         >+/- 250 kcal ({{ 'activityFactor.recommended' | transloco }})</span
       >
       <input
-        [(ngModel)]="defaultUserInformation().caloriesAdjustment"
-        checked
+        (click)="updateCaloriesAdjustment($event)"
+        [checked]="userInformation().caloriesAdjustment === 250"
         class="radio checked:bg-green-500"
         name="caloriesAdjustment"
         type="radio"
@@ -154,9 +153,10 @@
   </div>
   <div class="form-control">
     <label class="label cursor-pointer">
-      <span class="label-text text-md">+/- 500 kcal</span>
+      <span class="label-text text-lg">+/- 500 kcal</span>
       <input
-        [(ngModel)]="defaultUserInformation().caloriesAdjustment"
+        (click)="updateCaloriesAdjustment($event)"
+        [checked]="userInformation().caloriesAdjustment === 500"
         checked
         class="radio checked:bg-orange-500"
         name="caloriesAdjustment"
@@ -167,36 +167,41 @@
   </div>
   <div class="form-control">
     <label class="label cursor-pointer">
-      <span class="label-text text-md">+/- 750 kcal</span>
+      <span class="label-text text-lg">+/- 750 kcal</span>
       <input
-        [(ngModel)]="defaultUserInformation().caloriesAdjustment"
-        [value]="750"
+        (click)="updateCaloriesAdjustment($event)"
+        [checked]="userInformation().caloriesAdjustment === 750"
         checked
         class="radio checked:bg-red-500"
         name="caloriesAdjustment"
         type="radio"
+        value="750"
       />
     </label>
   </div>
-  <div class="my-3">
-    <p class="text-lg">
-      {{
-        'activityFactor.maintenanceIntakeInfo' | transloco: { calories: bmr() }
-      }}
-    </p>
-    <p class="text-lg">
-      {{
-        'activityFactor.muscleIntakeInfo'
-          | transloco: { calories: muscleGains() }
-      }}
-    </p>
-    <p class="text-lg">
-      {{
-        'activityFactor.fatLossIntakeInfo' | transloco: { calories: loseFat() }
-      }}
-    </p>
-  </div>
-  <button class="btn btn-primary" type="submit">
-    {{ 'activityFactor.calculate' | transloco }}
-  </button>
-</form>
+
+  @if (bmr() !== 0) {
+    <div class="my-3">
+      <p class="text-lg">
+        {{
+          'activityFactor.maintenanceIntakeInfo'
+            | transloco: { calories: bmr() }
+        }}
+      </p>
+      <p class="text-lg">
+        {{
+          'activityFactor.muscleIntakeInfo'
+            | transloco: { calories: muscleGains() }
+        }}
+      </p>
+      <p class="text-lg">
+        {{
+          'activityFactor.fatLossIntakeInfo'
+            | transloco: { calories: loseFat() }
+        }}
+      </p>
+    </div>
+  } @else {
+    <p class="my-3 text-md">⚠️ {{ 'activityFactor.fillForm' | transloco }}</p>
+  }
+</div>

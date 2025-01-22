@@ -7,7 +7,9 @@
   <h1 class="text-center text-3xl my-10">
     {{ 'welcome' | transloco }} {{ user()?.username }}
   </h1>
-  <div class="flex flex-col justify-center items-center mt-10">
+  <div
+    class="flex flex-col mt-10 px-5 md:w-5/12 md:justify-center md:justify-self-center"
+  >
     <fithelper-intake />
   </div>
 }
