@@ -21,6 +21,7 @@
           <input
             #email="ngModel"
             class="input input-bordered placeholder:opacity-25"
+            data-testid="email-input"
             name="email"
             ngModel
             pattern="[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}"
@@ -36,6 +37,7 @@
           <fithelper-front-shared-alert-ui
             *ngIf="email.dirty && email.hasError('pattern')"
             alertType="warning"
+            data-testid="alert-email-pattern-error"
             description="{{ 'inputShouldBeEmail' | transloco }}"
           />
         </div>
@@ -48,6 +50,7 @@
           <button
             [disabled]="loginForm.invalid"
             class="btn btn-primary"
+            data-testid="login-submit-button"
             type="submit"
           >
             {{ 'login.magicLinkBtnLabel' | transloco }}
@@ -70,7 +73,10 @@
         }
       </form>
     </div>
-    <a [routerLink]="['../register']" class="link link-hover text-center"
+    <a
+      [routerLink]="['../register']"
+      class="link link-hover text-center"
+      data-testid="register-link"
       >{{ 'login.noAccount' | transloco }}
       <span class="text-primary">{{
         'login.createAccount' | transloco

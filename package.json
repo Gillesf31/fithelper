@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "commit": "npx cz",
+    "commit": "pnpm cz",
     "prepare": "husky install"
   },
   "private": true,
