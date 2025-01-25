@@ -1,4 +1,4 @@
 export const environment = {
-  supabaseUrl: '',
-  supabaseKey: '',
+  supabaseUrl: 'REPLACE_SUPABASE_URL',
+  supabaseKey: 'REPLACE_SUPABASE_KEY',
 };
