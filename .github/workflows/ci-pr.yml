@@ -44,4 +44,6 @@ jobs:
           sed -i "s|REPLACE_SUPABASE_KEY|${{ secrets.SUPABASE_KEY }}|g" libs/fithelper-front/environments/util/environment.ts
 
       - name: Run affected commands
+        env:
+          PLAYWRIGHT_EMAIL: ${{ secrets.PLAYWRIGHT_EMAIL }}
         run: pnpm nx affected -t lint,test,build,e2e --parallel=3 --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
