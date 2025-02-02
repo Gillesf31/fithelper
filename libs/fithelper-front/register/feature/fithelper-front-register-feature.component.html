@@ -31,7 +31,7 @@
           <fithelper-front-shared-alert-ui
             *ngIf="email.dirty && email.hasError('required')"
             alertType="warning"
-            description="{{ 'emailRequired' | transloco }}"
+            description="{{ 'requiredEmail' | transloco }}"
           />
           <fithelper-front-shared-alert-ui
             *ngIf="email.dirty && email.hasError('pattern')"

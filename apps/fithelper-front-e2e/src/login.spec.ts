@@ -1,9 +1,11 @@
 import { expect, test } from '@playwright/test';
+import 'dotenv/config';
 
 const selectors = {
   emailInput: '[data-testid="email-input"]',
   submitButton: '[data-testid="login-submit-button"]',
   emailError: '[data-testid="alert-email-pattern-error"]',
+  requiredEmail: '[data-testid="alert-required-email-error"]',
   registerLink: '[data-testid="register-link"]',
   nonExistentAccountError: '[data-testid="error-non-existent-account"]',
   loginSuccess: '[data-testid="login-success"]',
@@ -35,10 +37,19 @@ test.describe('Login page', () => {
     await expect(page.locator(selectors.submitButton)).toBeDisabled();
   });
 
+  test('should warn user to type an email', async ({ page }) => {
+    await page.fill(selectors.emailInput, email);
+    await page.fill(selectors.emailInput, '');
+    await expect(page.locator(selectors.requiredEmail)).toContainText(
+      'Email is required!',
+    );
+    await expect(page.locator(selectors.submitButton)).toBeDisabled();
+  });
+
   test('should enable submit button when a valid email is entered', async ({
     page,
   }) => {
-    await page.fill(selectors.emailInput, 'john.doe@fithelper.com');
+    await page.fill(selectors.emailInput, email);
     await expect(page.locator(selectors.submitButton)).toBeEnabled();
   });
 
@@ -87,5 +98,26 @@ test.describe('Login page', () => {
     await expect(page.locator(selectors.loginSuccess)).toContainText(
       `You can now check your email ${email} and click on the link!`,
     );
+  });
+
+  test('should send an email and login the user', async ({ page, context }) => {
+    const email = process.env.PLAYWRIGHT_EMAIL as string;
+    await page.fill(selectors.emailInput, email);
+    await page.click(selectors.submitButton);
+    await expect(page.locator(selectors.loginSuccess)).toContainText(
+      `You can now check your email ${email} and click on the link!`,
+    );
+    await page.goto(
+      'https://www.mailinator.com/v4/public/inboxes.jsp?to=fithelpere2e-cvshutyenb',
+    );
+    await page.getByRole('cell', { name: 'Your Magic Link' }).first().click();
+    const pagePromise = context.waitForEvent('page');
+    await page
+      .locator('iframe[name="html_msg_body"]')
+      .contentFrame()
+      .getByRole('link', { name: 'Log In' })
+      .click();
+    const newPage = await pagePromise;
+    await expect(newPage.locator(selectors.header)).toContainText('Welcome');
   });
 });
