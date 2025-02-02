@@ -61,6 +61,7 @@
             description="{{
               'login.checkEmail' | transloco: { email: userEmail() }
             }}"
+            dataTestId="login-success"
             alertType="success"
           />
         } @else if (userError()) {
@@ -68,6 +69,7 @@
             description="{{
               'login.noAccountEmail' | transloco: { email: userEmail() }
             }}"
+            dataTestId="error-non-existent-account"
             alertType="error"
           />
         }
