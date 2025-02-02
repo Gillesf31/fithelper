@@ -1,15 +1,16 @@
-@if (isLoading()) {
-  <fithelper-loader></fithelper-loader>
-} @else if (user()?.username) {
-  <button class="btn btn-primary" (click)="signOut()">
-    {{ 'signOut' | transloco }}
-  </button>
-  <h1 class="text-center text-3xl my-10">
-    {{ 'welcome' | transloco }} {{ user()?.username }}
-  </h1>
-  <div
-    class="flex flex-col mt-10 px-5 md:w-5/12 md:justify-center md:justify-self-center"
-  >
-    <fithelper-intake />
-  </div>
-}
+<div class="h-screen bg-base-200 pt-5">
+  @if (isLoading()) {
+    <div class="flex flex-col mt-10 px-5 justify-center justify-self-center">
+      <fithelper-loader />
+    </div>
+  } @else if (user()?.username) {
+    <h1 class="text-center text-3xl">
+      {{ 'welcome' | transloco }} {{ user()?.username }}
+    </h1>
+    <div
+      class="flex flex-col mt-10 px-5 md:w-5/12 md:justify-center md:justify-self-center"
+    >
+      <fithelper-intake />
+    </div>
+  }
+</div>

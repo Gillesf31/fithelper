@@ -37,12 +37,21 @@
                   "type:feature",
                   "type:ui",
                   "type:util",
-                  "type:data-access"
+                  "type:data-access",
+                  "type:facade"
                 ]
               },
               {
                 "sourceTag": "type:data-access",
                 "onlyDependOnLibsWithTags": ["type:data-access", "type:util"]
+              },
+              {
+                "sourceTag": "type:state",
+                "onlyDependOnLibsWithTags": ["type:state", "type:util"]
+              },
+              {
+                "sourceTag": "type:facade",
+                "onlyDependOnLibsWithTags": ["type:state", "type:util"]
               },
               {
                 "sourceTag": "type:ui",
@@ -62,6 +71,8 @@
                   "type:routes",
                   "type:feature",
                   "type:data-access",
+                  "type:state",
+                  "type:facade",
                   "type:ui",
                   "type:util"
                 ]

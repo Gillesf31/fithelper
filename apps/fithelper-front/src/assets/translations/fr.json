@@ -14,7 +14,7 @@
     "noAccount": "Pas encore de compte ?",
     "createAccount": "Crée-en un ici !",
     "noAccountEmail": "On n’a pas trouvé de compte avec l’adresse e-mail {{email}} !",
-    "checkEmail": "Va vérifier tes e-mails à {{email}} et clique sur le lien !"
+    "checkEmail": "Va vérifier tes e-mails sur {{email}} et clique sur le lien !"
   },
   "register": {
     "title": "Crée un compte ici",
@@ -27,7 +27,7 @@
       "specialChar": "Au moins un caractère spécial.",
       "minMaxCharacters": "Entre 8 et 72 caractères."
     },
-    "checkEmail": "Va vérifier tes e-mails à {{email}} et clique sur le lien pour activer ton compte !",
+    "checkEmail": "Va vérifier tes e-mails sur {{email}} et clique sur le lien pour activer ton compte !",
     "accountAlreadyExists": "Un compte avec cette adresse e-mail existe déjà !",
     "error": "On n’a pas pu créer ton compte !",
     "alreadyHaveAccount": "Tu as déjà un compte ?",

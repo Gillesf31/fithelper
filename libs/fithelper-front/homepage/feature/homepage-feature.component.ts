@@ -7,20 +7,16 @@ import {
   Signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SupabaseService } from '@fithelper/fithelper-front-supabase-data-access';
 import { AuthenticationService } from '@fithelper/fithelper-front/authentication/data-access';
 import { Tables } from '@fithelper/fithelper-front/supabase/database/util';
 import { User } from '@supabase/supabase-js';
 import { filter, switchMap, tap } from 'rxjs';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import {
-  UserFacade,
-  UserService,
-} from '@fithelper/fithelper-front/user/data-access';
+import { UserService } from '@fithelper/fithelper-front/user/data-access';
 import { IntakeComponent } from '@fithelper/fithelper-front/homepage/intake/feature';
 import { LoaderComponent } from '@fithelper/shared/ui-components/loader/ui';
-import { Router } from '@angular/router';
 import { TranslocoPipe } from '@jsverse/transloco';
+import { UserFacade } from '@fithelper/fithelper-front/user/facade';
 
 @Component({
   selector: 'fithelper-homepage-feature',
@@ -30,7 +26,6 @@ import { TranslocoPipe } from '@jsverse/transloco';
 })
 export class HomepageFeatureComponent {
   public isLoading = signal(false);
-  readonly #supabaseClient = inject(SupabaseService).supabaseClient;
   readonly #profileService = inject(UserService);
   readonly #destroyRef = inject(DestroyRef);
   readonly #userFacade = inject(UserFacade);
@@ -50,11 +45,4 @@ export class HomepageFeatureComponent {
       takeUntilDestroyed(this.#destroyRef),
     ),
   );
-  readonly #router = inject(Router);
-
-  public signOut(): void {
-    this.#supabaseClient.auth.signOut().then(() => {
-      this.#router.navigate(['/login']);
-    });
-  }
 }

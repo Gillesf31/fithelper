@@ -12,6 +12,8 @@ const VALID_LIB_TYPES = [
   'routes',
   'feature',
   'data-access',
+  'state',
+  'facade',
   'util',
   'ui',
   'translation',

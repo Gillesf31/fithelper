@@ -7,3 +7,5 @@ export const loadUser = createAction(
     user: Tables<'users'>;
   }>(),
 );
+
+export const logoutButtonClicked = createAction('[User] Logout button clicked');
