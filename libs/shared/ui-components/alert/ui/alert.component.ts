@@ -13,4 +13,6 @@ export class AlertComponent {
   >(undefined);
 
   public description = input.required<string>();
+
+  public dataTestId = input<string>();
 }
