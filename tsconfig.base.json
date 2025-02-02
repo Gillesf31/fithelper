@@ -57,6 +57,12 @@
       "@fithelper/fithelper-front/user/data-access": [
         "libs/fithelper-front/user/data-access/index.ts"
       ],
+      "@fithelper/fithelper-front/user/facade": [
+        "libs/fithelper-front/user/facade/index.ts"
+      ],
+      "@fithelper/fithelper-front/user/state": [
+        "libs/fithelper-front/user/state/index.ts"
+      ],
       "@fithelper/shared/local-storage/util": [
         "libs/shared/local-storage/util/index.ts"
       ],

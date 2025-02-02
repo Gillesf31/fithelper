@@ -6,14 +6,12 @@ import {
   notAuthenticatedUser,
 } from '@fithelper/fithelper-front/authentication/data-access';
 import { SupabaseService } from '@fithelper/fithelper-front-supabase-data-access';
-import {
-  UserFacade,
-  userReducer,
-  UserService,
-} from '@fithelper/fithelper-front/user/data-access';
+import { UserService } from '@fithelper/fithelper-front/user/data-access';
 import { provideState, provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { isDevMode } from '@angular/core';
+import { UserFacade } from '@fithelper/fithelper-front/user/facade';
+import { userReducer } from '@fithelper/fithelper-front/user/state';
 
 export const ROUTES: Route[] = [
   {
@@ -25,7 +23,7 @@ export const ROUTES: Route[] = [
       UserService,
       UserFacade,
       provideStore(),
-      provideState({ name: 'connectedUser', reducer: userReducer }),
+      provideState({ name: 'fithelper-front', reducer: userReducer }),
       provideStoreDevtools({
         maxAge: 25,
         logOnly: !isDevMode(),
