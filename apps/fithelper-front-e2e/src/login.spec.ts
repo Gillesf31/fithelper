@@ -3,6 +3,7 @@ import 'dotenv/config';
 
 const selectors = {
   emailInput: '[data-testid="email-input"]',
+  passwordInput: '[data-testid="password-input"]',
   submitButton: '[data-testid="login-submit-button"]',
   emailError: '[data-testid="alert-email-pattern-error"]',
   requiredEmail: '[data-testid="alert-required-email-error"]',
@@ -13,6 +14,7 @@ const selectors = {
 };
 
 const email = 'test@fithelper.com';
+const password = 'password456';
 
 test.describe('Login page', () => {
   test.beforeEach(async ({ page }) => {
@@ -50,6 +52,7 @@ test.describe('Login page', () => {
     page,
   }) => {
     await page.fill(selectors.emailInput, email);
+    await page.fill(selectors.passwordInput, password);
     await expect(page.locator(selectors.submitButton)).toBeEnabled();
   });
 
@@ -60,6 +63,7 @@ test.describe('Login page', () => {
 
   test('should display non existing account error', async ({ page }) => {
     await page.fill(selectors.emailInput, email);
+    await page.fill(selectors.passwordInput, password);
     await page.route('*/**/auth/v1/otp', async (route) => {
       await route.fulfill({
         json: {
@@ -79,45 +83,11 @@ test.describe('Login page', () => {
     );
   });
 
-  test('should display successfully sent magic link', async ({ page }) => {
-    await page.fill(selectors.emailInput, email);
-    await page.route('*/**/auth/v1/otp', async (route) => {
-      await route.fulfill({
-        json: {
-          email,
-          data: {},
-          create_user: false,
-          gotrue_meta_security: {},
-          code_challenge: null,
-          code_challenge_method: null,
-        },
-        status: 200,
-      });
-    });
+  test('should login and redirect to homepage', async ({ page }) => {
+    await page.fill(selectors.emailInput, process.env.PLAYWRIGHT_EMAIL);
+    await page.fill(selectors.passwordInput, process.env.PLAYWRIGHT_PASSWORD);
     await page.click(selectors.submitButton);
-    await expect(page.locator(selectors.loginSuccess)).toContainText(
-      `You can now check your email ${email} and click on the link!`,
-    );
-  });
-
-  test('should send an email and login the user', async ({ page, context }) => {
-    const email = process.env.PLAYWRIGHT_EMAIL as string;
-    await page.fill(selectors.emailInput, email);
-    await page.click(selectors.submitButton);
-    await expect(page.locator(selectors.loginSuccess)).toContainText(
-      `You can now check your email ${email} and click on the link!`,
-    );
-    await page.goto(
-      'https://www.mailinator.com/v4/public/inboxes.jsp?to=fithelpere2e-cvshutyenb',
-    );
-    await page.getByRole('cell', { name: 'Your Magic Link' }).first().click();
-    const pagePromise = context.waitForEvent('page');
-    await page
-      .locator('iframe[name="html_msg_body"]')
-      .contentFrame()
-      .getByRole('link', { name: 'Log In' })
-      .click();
-    const newPage = await pagePromise;
-    await expect(newPage.locator(selectors.header)).toContainText('Welcome');
+    await page.waitForURL('/');
+    await expect(page.locator(selectors.header)).toContainText('Welcome');
   });
 });
