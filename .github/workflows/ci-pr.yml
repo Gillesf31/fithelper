@@ -46,4 +46,5 @@ jobs:
       - name: Run affected commands
         env:
           PLAYWRIGHT_EMAIL: ${{ secrets.PLAYWRIGHT_EMAIL }}
+          PLAYWRIGHT_PASSWORD: ${{ secrets.PLAYWRIGHT_PASSWORD }}
         run: pnpm nx affected -t lint,test,build,e2e --parallel=3 --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}

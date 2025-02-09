@@ -10,7 +10,7 @@
   "login": {
     "title": "Connecte-toi ici !",
     "magicLinkInfo": "On va t’envoyer un e-mail avec un lien magique, clique dessus pour te connecter.",
-    "magicLinkBtnLabel": "Envoie-moi mon lien magique !",
+    "btnLabel": "Me connecter !",
     "noAccount": "Pas encore de compte ?",
     "createAccount": "Crée-en un ici !",
     "noAccountEmail": "On n’a pas trouvé de compte avec l’adresse e-mail {{email}} !",

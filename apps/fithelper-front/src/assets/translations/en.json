@@ -10,7 +10,7 @@
   "login": {
     "title": "Login here!",
     "magicLinkInfo": "We'll send you an e-mail with a magic link, just click on this link to login",
-    "magicLinkBtnLabel": "Get my magic login link!",
+    "btnLabel": "Login!",
     "noAccount": "No account yet?",
     "createAccount": "Create one here !",
     "noAccountEmail": "We couldn't find your account with {{email}} email!",
