@@ -36,6 +36,9 @@
       "@fithelper/fithelper-front/homepage/intake/feature": [
         "libs/fithelper-front/homepage/intake/feature/index.ts"
       ],
+      "@fithelper/fithelper-front/homepage/macronutrient/util": [
+        "libs/fithelper-front/homepage/macronutrient/util/index.ts"
+      ],
       "@fithelper/fithelper-front/homepage/util": [
         "libs/fithelper-front/homepage/util/index.ts"
       ],

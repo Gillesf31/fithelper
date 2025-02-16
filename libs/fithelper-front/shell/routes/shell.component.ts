@@ -1,21 +1,21 @@
+import { UpperCasePipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
   inject,
   OnInit,
 } from '@angular/core';
-import { SelectThemeType } from '@fithelper/shared/theme-toggler/ui';
+import { Router, RouterOutlet } from '@angular/router';
+import { AuthenticationService } from '@fithelper/fithelper-front/authentication/data-access';
+import { IntakeService } from '@fithelper/fithelper-front/homepage/intake/data-access';
 import {
   handleAppTheme,
   toggleTheme,
 } from '@fithelper/fithelper-front/homepage/util';
-import { AuthenticationService } from '@fithelper/fithelper-front/authentication/data-access';
-import { Router, RouterOutlet } from '@angular/router';
-import { IntakeService } from '@fithelper/fithelper-front/homepage/intake/data-access';
+import { UserFacade } from '@fithelper/fithelper-front/user/facade';
+import { SelectThemeType } from '@fithelper/shared/theme-toggler/ui';
 import { TranslocoPipe } from '@jsverse/transloco';
 import { take, tap } from 'rxjs';
-import { UpperCasePipe } from '@angular/common';
-import { UserFacade } from '@fithelper/fithelper-front/user/facade';
 
 @Component({
   selector: 'fithelper-shell',
@@ -120,6 +120,11 @@ import { UserFacade } from '@fithelper/fithelper-front/user/facade';
       </div>
     </div>
     <router-outlet></router-outlet>
+    <footer class="footer footer-center bg-base-300 text-base-content p-4">
+      <aside>
+        <p>Copyright © 2025</p>
+      </aside>
+    </footer>
   `,
 })
 export class FithelperShellComponent implements OnInit {
