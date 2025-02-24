@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "LibGenerator",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "libraryType": {
+      "type": "string",
+      "description": "The type of library to generate.",
+      "enum": ["feature", "ui", "util", "data-access", "state", "facade"],
+      "x-prompt": {
+        "message": "What type of library would you like to use?",
+        "type": "list",
+        "items": [
+          {
+            "value": "feature",
+            "label": "feature"
+          },
+          {
+            "value": "ui",
+            "label": "ui"
+          },
+          {
+            "value": "util",
+            "label": "util"
+          },
+          {
+            "value": "data-access",
+            "label": "data-access"
+          },
+          {
+            "value": "state",
+            "label": "state"
+          },
+          {
+            "value": "facade",
+            "label": "facade"
+          }
+        ]
+      }
+    },
+    "groupingFolder": {
+      "type": "string",
+      "description": "The grouping folder of library to generate.",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What grouping folder would you like to use?"
+    }
+  },
+  "required": ["libraryType"]
+}
