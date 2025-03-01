@@ -48,7 +48,10 @@
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/test-setup.[jt]s",
       "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/eslint.config.js"
+      "!{projectRoot}/eslint.config.js",
+      "!{projectRoot}/cypress/**/*",
+      "!{projectRoot}/**/*.cy.[jt]s?(x)",
+      "!{projectRoot}/cypress.config.[jt]s"
     ],
     "sharedGlobals": []
   },
@@ -56,8 +59,7 @@
     "@nx/angular:application": {
       "style": "css",
       "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "playwright"
+      "unitTestRunner": "jest"
     },
     "@nx/angular:library": {
       "linter": "eslint",

@@ -79,6 +79,19 @@
       "options": {
         "jestConfig": "apps/fithelper-front/jest.config.ts"
       }
+    },
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/fithelper-front/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "fithelper-front:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "fithelper-front:serve:production"
+        }
+      }
     }
   }
 }
