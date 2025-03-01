@@ -37,9 +37,6 @@ jobs:
       - name: Format Check
         run: pnpm nx format:check --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
 
-      - name: Install Playwright Browsers
-        run: pnpm playwright install --with-deps
-
       - name: Replace environment Variables in environment.ts
         run: |
           sed -i "s|REPLACE_SUPABASE_URL|${{ secrets.SUPABASE_URL }}|g" libs/fithelper-front/environments/util/environment.ts
@@ -49,4 +46,6 @@ jobs:
         env:
           PLAYWRIGHT_EMAIL: ${{ secrets.PLAYWRIGHT_EMAIL }}
           PLAYWRIGHT_PASSWORD: ${{ secrets.PLAYWRIGHT_PASSWORD }}
-        run: pnpm nx affected -t lint,test,build,e2e --parallel=3 --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+        run: |
+          pnpm nx affected -t lint,test,build --parallel=3 --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+          pnpm nx affected -t e2e --configuration=production --parallel=3 --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
