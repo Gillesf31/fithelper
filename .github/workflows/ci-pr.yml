@@ -1,9 +1,11 @@
 name: CI
-'on':
+on:
   pull_request: null
 jobs:
   main:
     runs-on: ubuntu-latest
+    env:
+      CYPRESS_CACHE_FOLDER: cypress_cache
     strategy:
       matrix:
         node-version:
@@ -13,17 +15,32 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.head.sha }}
+
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 9
-      - name: 'Use Node.js ${{ matrix.node-version }}'
+
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: '${{ matrix.node-version }}'
           cache: pnpm
+
+      - name: Cache Cypress binary
+        uses: actions/cache@v3
+        with:
+          path: cypress_cache
+          key: ${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-cypress-
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Install Cypress binary
+        run: pnpm exec cypress install
+
       - name: Set Base and Head for PR
         run: |
           git fetch origin --prune
@@ -32,6 +49,7 @@ jobs:
           HEAD_SHA=$(git rev-parse HEAD)
           echo "NX_BASE=$BASE_SHA" >> $GITHUB_ENV
           echo "NX_HEAD=$HEAD_SHA" >> $GITHUB_ENV
+
       - name: Format Check
         run: pnpm nx format:check --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
 
@@ -46,4 +64,5 @@ jobs:
           PLAYWRIGHT_PASSWORD: ${{ secrets.PLAYWRIGHT_PASSWORD }}
         run: |
           pnpm nx affected -t lint,test,build --parallel=3 --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+          pnpm nx affected -t component-test --configuration=production --parallel=3 --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
           pnpm nx affected -t e2e --configuration=production --parallel=3 --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}

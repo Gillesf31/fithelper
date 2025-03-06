@@ -13,4 +13,11 @@ export default defineConfig({
       return config;
     },
   },
+  component: {
+    devServer: {
+      framework: 'angular',
+      bundler: 'webpack',
+    },
+    specPattern: '**/*.cy.ts',
+  },
 });

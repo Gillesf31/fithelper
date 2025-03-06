@@ -26,7 +26,12 @@ import { take, tap } from 'rxjs';
     <div class="navbar bg-base-100">
       <div class="navbar-start">
         <div class="dropdown">
-          <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+          <div
+            tabindex="0"
+            role="button"
+            class="btn btn-ghost btn-circle"
+            data-testid="toggle-theme"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5"
@@ -45,6 +50,7 @@ import { take, tap } from 'rxjs';
           <ul
             tabindex="0"
             class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow-md shadow-primary/15"
+            data-testid="theme-dropdown-menu"
           >
             @for (theme of selectTheme; track theme.value) {
               <li>
