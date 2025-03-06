@@ -6,4 +6,4 @@ MERGE_BASE=$(git merge-base HEAD $BASE_BRANCH)
 
 pnpm lint-staged --relative
 pnpm nx affected -t lint --fix=true --base=$MERGE_BASE
-pnpm nx affected -t test,e2e --uncommitted
+pnpm nx affected -t test,e2e,component-test --uncommitted

@@ -1,4 +1,4 @@
-describe('fithelper-front', () => {
+describe('Login page', () => {
   const selectors = {
     email: 'test@fithelper.com',
     emailPatternError: '[data-testid="alert-email-pattern-error"]',
@@ -12,6 +12,13 @@ describe('fithelper-front', () => {
 
   it('should display display a title', () => {
     cy.get('h1').contains('Login here!');
+  });
+
+  it('should toggle theme', () => {
+    cy.get('[data-testid="toggle-theme"]').click();
+    cy.get('[data-testid="theme-dropdown-menu"]').find('li').eq(0).click();
+    cy.get('[data-testid="theme-dropdown-menu"]').find('li').eq(1).click();
+    cy.get('[data-testid="theme-dropdown-menu"]').find('li').eq(2).click();
   });
 
   it('should display a disabled submit button', () => {

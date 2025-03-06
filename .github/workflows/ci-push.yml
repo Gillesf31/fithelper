@@ -6,6 +6,8 @@ name: CI
 jobs:
   main:
     runs-on: ubuntu-latest
+    env:
+      CYPRESS_CACHE_FOLDER: cypress_cache
     strategy:
       matrix:
         node-version:
@@ -23,8 +25,20 @@ jobs:
         with:
           node-version: '${{ matrix.node-version }}'
           cache: pnpm
+
+      - name: Cache Cypress binary
+        uses: actions/cache@v3
+        with:
+          path: cypress_cache
+          key: ${{ runner.os }}-cypress-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-cypress-
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Install Cypress binary
+        run: pnpm exec cypress install
 
       - name: Set Base and Head
         run: |
@@ -48,4 +62,5 @@ jobs:
           PLAYWRIGHT_PASSWORD: ${{ secrets.PLAYWRIGHT_PASSWORD }}
         run: |
           pnpm nx affected -t lint,test,build --parallel=3 --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+          pnpm nx affected -t component-test --configuration=production --parallel=3 --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
           pnpm nx affected -t e2e --configuration=production --parallel=3 --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}

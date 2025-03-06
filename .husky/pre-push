@@ -4,7 +4,7 @@
 BASE_BRANCH="main"
 MERGE_BASE=$(git merge-base HEAD $BASE_BRANCH)
 
-pnpm nx affected --target=build,test,e2e --base=$MERGE_BASE --head=HEAD --parallel --maxParallel=6
+pnpm nx affected --target=build,test,e2e,component-test --base=$MERGE_BASE --head=HEAD --parallel --maxParallel=6
 
 UNCOMMITTED_FILES=$(git status --porcelain)
 

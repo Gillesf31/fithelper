@@ -109,6 +109,7 @@ async function createImplicitLibProjectConfig(
 
   const projectName = [scope, ...groupingFolders, type].join('-');
   const hasTests = await hasFileMatching(projectRoot, '**/*.spec.ts');
+  const hasCyTests = await hasFileMatching(projectRoot, '**/*.cy.ts');
 
   const libraryPath = `@fithelper/${[scope, ...groupingFolders, type].join('/')}`;
   if (showLogs && !Object.keys(definedLibraries).includes(libraryPath)) {
@@ -142,6 +143,9 @@ async function createImplicitLibProjectConfig(
       targets: {
         ...createLintTarget(),
         ...(hasTests ? createTestTarget(projectRoot, projectName) : {}),
+        ...(hasCyTests
+          ? createComponentTestTarget(projectRoot, projectName)
+          : {}),
       },
       tags: [`scope:${scope}`, `type:${type}`],
     },
@@ -184,6 +188,23 @@ function createTestTarget(
         },
       ],
       outputs: ['{workspaceRoot}/coverage/{projectRoot}'],
+    },
+  };
+}
+
+function createComponentTestTarget(
+  projectRoot: string,
+  projectName: string,
+): ProjectConfiguration['targets'] {
+  return {
+    'component-test': {
+      executor: '@nx/cypress:cypress',
+      options: {
+        cypressConfig: `${projectRoot}/cypress.config.ts`,
+        testingType: 'component',
+        skipServe: true,
+        devServerTarget: `fithelper-front:build`,
+      },
     },
   };
 }
