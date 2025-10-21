@@ -1,10 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
   selector: 'fithelper-activity-factor',
-  imports: [CommonModule, TranslocoPipe],
+  imports: [TranslocoPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: ` <table class="table">
     <tbody>

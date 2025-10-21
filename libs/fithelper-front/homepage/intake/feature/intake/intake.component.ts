@@ -6,7 +6,7 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import {
   IntakeService,
@@ -16,7 +16,7 @@ import { ActivityFactorComponent } from '../activityFactor/activity-factor.compo
 import { TranslocoPipe } from '@jsverse/transloco';
 
 @Component({
-  imports: [CommonModule, FormsModule, ActivityFactorComponent, TranslocoPipe],
+  imports: [FormsModule, ActivityFactorComponent, TranslocoPipe],
   templateUrl: './intake.component.html',
   selector: 'fithelper-intake',
   changeDetection: ChangeDetectionStrategy.OnPush,

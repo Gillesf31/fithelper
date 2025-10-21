@@ -84,18 +84,20 @@
               </svg>
             }
           </span>
-          <fithelper-front-shared-alert-ui
-            *ngIf="email.dirty && email.hasError('required')"
-            alertType="warning"
-            data-testid="alert-required-email-error"
-            description="{{ 'requiredEmail' | transloco }}"
-          />
-          <fithelper-front-shared-alert-ui
-            *ngIf="email.dirty && email.hasError('pattern')"
-            alertType="warning"
-            data-testid="alert-email-pattern-error"
-            description="{{ 'inputShouldBeEmail' | transloco }}"
-          />
+          @if (email.dirty && email.hasError('required')) {
+            <fithelper-front-shared-alert-ui
+              alertType="warning"
+              data-testid="alert-required-email-error"
+              description="{{ 'requiredEmail' | transloco }}"
+            />
+          }
+          @if (email.dirty && email.hasError('pattern')) {
+            <fithelper-front-shared-alert-ui
+              alertType="warning"
+              data-testid="alert-email-pattern-error"
+              description="{{ 'inputShouldBeEmail' | transloco }}"
+            />
+          }
         </div>
         <div class="form-control mt-3">
           @if (isLoading()) {

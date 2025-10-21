@@ -2,7 +2,7 @@
   "name": "@fithelper/lib-generator",
   "version": "0.0.1",
   "dependencies": {
-    "@nx/devkit": "20.3.0",
+    "@nx/devkit": "21.6.5",
     "tslib": "^2.3.0"
   },
   "type": "commonjs",

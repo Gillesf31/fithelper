@@ -6,7 +6,7 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthenticationService } from '@fithelper/fithelper-front/authentication/data-access';
@@ -17,7 +17,6 @@ import { TranslocoPipe } from '@jsverse/transloco';
 @Component({
   selector: 'fithelper-front-homepage-register-feature',
   imports: [
-    CommonModule,
     AlertComponent,
     FormsModule,
     RouterLink,
