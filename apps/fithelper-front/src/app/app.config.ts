@@ -1,22 +1,22 @@
+import { provideHttpClient } from '@angular/common/http';
 import {
   ApplicationConfig,
   inject,
   isDevMode,
   provideAppInitializer,
-  provideExperimentalZonelessChangeDetection,
+  provideZonelessChangeDetection,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { appRoutes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
-import { provideTransloco, TranslocoService } from '@jsverse/transloco';
 import { TranslocoHttpLoader } from '@fithelper/shared/translations/translation';
+import { provideTransloco, TranslocoService } from '@jsverse/transloco';
+import { appRoutes } from './app.routes';
 
 const availableLangs = ['en', 'fr'];
 const defaultLang = 'en';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideExperimentalZonelessChangeDetection(),
+    provideZonelessChangeDetection(),
     provideRouter(appRoutes),
     provideHttpClient(),
     provideTransloco({

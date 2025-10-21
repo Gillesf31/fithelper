@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -21,7 +20,6 @@ import { tap } from 'rxjs';
 @Component({
   selector: 'fithelper-front-login-feature',
   imports: [
-    CommonModule,
     FormsModule,
     AlertComponent,
     RouterLink,

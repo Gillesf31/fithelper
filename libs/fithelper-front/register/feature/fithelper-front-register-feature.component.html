@@ -28,16 +28,18 @@
             required
             type="email"
           />
-          <fithelper-front-shared-alert-ui
-            *ngIf="email.dirty && email.hasError('required')"
-            alertType="warning"
-            description="{{ 'requiredEmail' | transloco }}"
-          />
-          <fithelper-front-shared-alert-ui
-            *ngIf="email.dirty && email.hasError('pattern')"
-            alertType="warning"
-            description="{{ 'inputShouldBeEmail' | transloco }}"
-          />
+          @if (email.dirty && email.hasError('required')) {
+            <fithelper-front-shared-alert-ui
+              alertType="warning"
+              description="{{ 'requiredEmail' | transloco }}"
+            />
+          }
+          @if (email.dirty && email.hasError('pattern')) {
+            <fithelper-front-shared-alert-ui
+              alertType="warning"
+              description="{{ 'inputShouldBeEmail' | transloco }}"
+            />
+          }
         </div>
         <div class="form-control relative">
           <label class="label">
@@ -94,49 +96,44 @@
               </svg>
             }
           </span>
-          <div
-            *ngIf="password?.dirty && !password?.value?.match(pwdRegex)"
-            class="text-sm"
-          >
-            <span class="mt-3 block text-content">{{
-              'register.password.shouldContain' | transloco
-            }}</span>
-            <span
-              *ngIf="!password?.value?.match('.*[A-Z]')"
-              class="text-error ml-3 block"
-            >
-              {{ 'register.password.uppercase' | transloco }}
-            </span>
-            <span
-              *ngIf="!password?.value?.match('.*[a-z]')"
-              class="text-error ml-3 block"
-            >
-              {{ 'register.password.lowercase' | transloco }}
-            </span>
-            <span
-              *ngIf="!password?.value?.match('.*[0-9]')"
-              class="text-error ml-3 block"
-            >
-              {{ 'register.password.digit' | transloco }}
-            </span>
-            <span
-              *ngIf="!password?.value?.match('.*\\W')"
-              class="text-error ml-3 block"
-            >
-              {{ 'register.password.specialChar' | transloco }}
-            </span>
-            <span
-              *ngIf="password?.value?.match('^(.{0,7}|.{73,})')"
-              class="text-error ml-3 block"
-            >
-              {{ 'register.password.minMaxCharacters' | transloco }}
-            </span>
-          </div>
-          <fithelper-front-shared-alert-ui
-            *ngIf="password.dirty && password.hasError('required')"
-            alertType="warning"
-            description="{{ 'requiredPassword' | transloco }}"
-          />
+          @if (password?.dirty && !password?.value?.match(pwdRegex)) {
+            <div class="text-sm">
+              <span class="mt-3 block text-content">{{
+                'register.password.shouldContain' | transloco
+              }}</span>
+              @if (!password?.value?.match('.*[A-Z]')) {
+                <span class="text-error ml-3 block">
+                  {{ 'register.password.uppercase' | transloco }}
+                </span>
+              }
+              @if (!password?.value?.match('.*[a-z]')) {
+                <span class="text-error ml-3 block">
+                  {{ 'register.password.lowercase' | transloco }}
+                </span>
+              }
+              @if (!password?.value?.match('.*[0-9]')) {
+                <span class="text-error ml-3 block">
+                  {{ 'register.password.digit' | transloco }}
+                </span>
+              }
+              @if (!password?.value?.match('.*\\W')) {
+                <span class="text-error ml-3 block">
+                  {{ 'register.password.specialChar' | transloco }}
+                </span>
+              }
+              @if (password?.value?.match('^(.{0,7}|.{73,})')) {
+                <span class="text-error ml-3 block">
+                  {{ 'register.password.minMaxCharacters' | transloco }}
+                </span>
+              }
+            </div>
+          }
+          @if (password.dirty && password.hasError('required')) {
+            <fithelper-front-shared-alert-ui
+              alertType="warning"
+              description="{{ 'requiredPassword' | transloco }}"
+            />
+          }
         </div>
         <div class="form-control mt-3">
           @if (isLoading()) {

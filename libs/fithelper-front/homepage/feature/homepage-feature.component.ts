@@ -6,7 +6,7 @@ import {
   signal,
   Signal,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { AuthenticationService } from '@fithelper/fithelper-front/authentication/data-access';
 import { Tables } from '@fithelper/fithelper-front/supabase/database/util';
 import { User } from '@supabase/supabase-js';
@@ -20,7 +20,7 @@ import { UserFacade } from '@fithelper/fithelper-front/user/facade';
 
 @Component({
   selector: 'fithelper-homepage-feature',
-  imports: [CommonModule, LoaderComponent, IntakeComponent, TranslocoPipe],
+  imports: [LoaderComponent, IntakeComponent, TranslocoPipe],
   templateUrl: 'homepage-feature.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
